@@ -1,7 +1,20 @@
-# tapestory-shapes-2
+# tapestory
 
-A Vite+Vue3 Generated Static Site for Glitch
+Tapestory is about therapeutic creativity. It will let you answer thought-provoking questions in a colourful and individual way.
 
-Settings optimized for Typescript
+Read ["I am making a creativity tool"](https://stegriff.co.uk/upblog/i-am-making-a-creativity-tool/) and  ["Life's rich tapestory"](https://stegriff.co.uk/upblog/lifes-rich-tapestory/).
 
-Part of the [tapestory story](https://stegriff.co.uk/upblog/i-am-making-a-creativity-tool/)
+## Tech
+
+Vite + Vue3 + Typescript
+
+I'm writing this project to learn the latest and best stuff in Vue, like the Compositional API, `<script setup>`, and typescript integration.
+
+## Setup
+
+Requires Node >16
+
+```
+npm i
+npm run start
+```
