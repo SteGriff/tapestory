@@ -33,11 +33,17 @@
       class="ph2 w-100 measure center mv4"
       @click="state.expandedTool = ToolType.None"
     >
-      <div>
-        <div v-for="(se, index) in state.storyElements" :key="index">
-          <box :box-model="se" @click="selectBox(index)" />
-        </div>
-      </div>
+      <draggable
+        v-model="state.storyElements"
+        :move="checkMove"
+        item-key="order"
+        @start="state.drag = true"
+        @end="state.drag = false"
+      >
+        <template #item="{ element }">
+          <box :box-model="element" @click="selectBox(element.order)" />
+        </template>
+      </draggable>
 
       <!-- <h1 class="heading palette38 shaderg135">Hello World</h1> -->
 
@@ -50,6 +56,7 @@
       </button>
 
       <!-- Debug -->
+      <p>Dragging? {{ state.drag }}</p>
       <!-- <table class="w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementIndex }}</td>
@@ -57,12 +64,14 @@
           <td class="ba pa1">{{ selectedElement.shader }}</td>
           <td class="ba pa1">{{ selectedElement.foreground }}</td>
         </tr>
-      </table> -->
+      </table>-->
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import draggable from "vuedraggable";
+
 import box from "@/components/Box.vue";
 import palettePicker from "@/components/PalettePicker.vue";
 import shaderPicker from "./components/ShaderPicker.vue";
@@ -73,19 +82,26 @@ import { computed, reactive } from "vue";
 import type { IAppState } from "./types/IAppState";
 import { ToolType } from "./types/ToolType";
 import { elementLike, initialBox } from "./data/StoryElementFactory";
+import { maxOf } from "./utils/lambdas";
 
 const state = reactive<IAppState>({
   expandedTool: ToolType.None,
   selectedElementIndex: 0,
   storyElements: [initialBox()],
+  drag: false,
 });
 
 const selectedElement = computed(
-  () => state.storyElements[state.selectedElementIndex]
+  () =>
+    state.storyElements.find((se) => se.order == state.selectedElementIndex) ||
+    state.storyElements[0]
 );
 
 const bottomElement = computed(
-  () => state.storyElements[state.storyElements.length - 1]
+  () =>
+    state.storyElements.find(
+      (se) => se.order == maxOf(state.storyElements.map((x) => x.order))
+    ) || state.storyElements[state.storyElements.length - 1]
 );
 
 const bottomElementClasses = computed(() => [
@@ -93,6 +109,10 @@ const bottomElementClasses = computed(() => [
   "shader" + bottomElement.value.shader,
   bottomElement.value.foreground,
 ]);
+
+const checkMove = (e: any) => {
+  console.log("Future index: " + e.draggedContext.futureIndex);
+};
 
 const selectBox = (index: number) => {
   state.selectedElementIndex = index;

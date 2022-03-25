@@ -7,4 +7,5 @@ export interface IStoryElement {
   shader: string;
   palette: number;
   foreground: string;
+  order: number;
 }

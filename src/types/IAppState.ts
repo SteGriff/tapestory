@@ -5,5 +5,5 @@ export interface IAppState {
     expandedTool : ToolType,
     storyElements : IStoryElement[],
     selectedElementIndex : number,
-    
+    drag: boolean
 }
