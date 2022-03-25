@@ -173,16 +173,16 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-.box, .heading {
+.box, .heading, .btn {
   transition:transform 0.25s ease-out;
 }
 
-.box:hover, .heading:hover {
+.box:hover, .heading:hover, .btn:hover {
   transform:scale(1.02);
 }
 
 .box:active, .box:focus, 
-.heading:active, .heading:focus  {
+.heading:active, .heading:focus {
   transform:scale(1.04);
   outline: 2px solid var(--first);
 }

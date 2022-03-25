@@ -1,36 +1,7 @@
 <template>
-  <div class="flex h-100" @click.capture="expandCollapse(ToolType.None)">
-    <aside class="h-100 w2 minw2 br b--gray z-0">
-      <tool-drawer class="top-1" :expanded="toolIs(ToolType.Palette)">
-        <palette-picker
-          v-model="selectedElement.palette"
-          @expandCollapse="expandCollapse(ToolType.Palette)"
-          @expand="expand(ToolType.Palette)"
-        />
-      </tool-drawer>
-
-      <tool-drawer class="top-6" :expanded="toolIs(ToolType.Shader)">
-        <shader-picker
-          v-model="selectedElement.shader"
-          :palette="selectedElement.palette"
-          @expandCollapse="expandCollapse(ToolType.Shader)"
-          @expand="expand(ToolType.Shader)"
-        />
-      </tool-drawer>
-
-      <tool-drawer class="top-11" :expanded="toolIs(ToolType.Foreground)">
-        <foreground-picker
-          v-model="selectedElement.foreground"
-          :palette="selectedElement.palette"
-          :shader="selectedElement.shader"
-          @expandCollapse="expandCollapse(ToolType.Foreground)"
-          @expand="expand(ToolType.Foreground)"
-        />
-      </tool-drawer>
-    </aside>
-
+  <div @click.capture="expandCollapse(ToolType.None)">
     <main
-      class="ph2 w-100 measure center mv4"
+      class="ph2 w-100 measure center mt4 mb5"
       @click="state.expandedTool = ToolType.None"
     >
       <div>
@@ -42,7 +13,7 @@
       <!-- <h1 class="heading palette38 shaderg135">Hello World</h1> -->
 
       <button
-        class="bg-white bn black pointer br-pill f2 w3 h3 db center tc"
+        class="btn bn black pointer br-pill f2 w3 h3 db center tc"
         :class="bottomElementClasses"
         @click="addBox"
       >
@@ -59,6 +30,40 @@
         </tr>
       </table> -->
     </main>
+
+    <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-black-10">
+      <div class="w-100 measure center flex">
+        <tool-drawer class="bg-black-10" :expanded="toolIs(ToolType.Palette)">
+          <palette-picker
+            v-model="selectedElement.palette"
+            @expandCollapse="expandCollapse(ToolType.Palette)"
+            @expand="expand(ToolType.Palette)"
+          />
+        </tool-drawer>
+
+        <tool-drawer class="bg-black-20" :expanded="toolIs(ToolType.Shader)">
+          <shader-picker
+            v-model="selectedElement.shader"
+            :palette="selectedElement.palette"
+            @expandCollapse="expandCollapse(ToolType.Shader)"
+            @expand="expand(ToolType.Shader)"
+          />
+        </tool-drawer>
+
+        <tool-drawer
+          class="bg-black-30"
+          :expanded="toolIs(ToolType.Foreground)"
+        >
+          <foreground-picker
+            v-model="selectedElement.foreground"
+            :palette="selectedElement.palette"
+            :shader="selectedElement.shader"
+            @expandCollapse="expandCollapse(ToolType.Foreground)"
+            @expand="expand(ToolType.Foreground)"
+          />
+        </tool-drawer>
+      </div>
+    </footer>
   </div>
 </template>
 

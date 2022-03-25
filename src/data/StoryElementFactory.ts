@@ -7,10 +7,10 @@ export function initialBox(): IStoryElement {
   return {
     elementType: StoryElementType.Box,
     shape: "round",
-    shader: "g135",
-    palette: 38,
-    foreground: "black",
-    text: "This is my story",
+    shader: "g13",
+    palette: 1,
+    foreground: "white",
+    text: "Hello",
   };
 }
 

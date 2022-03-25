@@ -1,6 +1,6 @@
 <template>
   <div
-    class="z-99 fixed drawer ba b--gray br4 bg-white overflow-hidden"
+    class="z-99 drawer overflow-hidden"
     :class="{ expanded: expanded, collapsed: !expanded }"
   >
     <div
