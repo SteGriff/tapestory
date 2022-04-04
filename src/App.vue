@@ -6,7 +6,13 @@
     >
       <div>
         <div v-for="(se, index) in state.storyElements" :key="index">
-          <box :box-model="se" @click="selectBox(index)" />
+          <element-tools
+            :selected="selectedIs(index)"
+            @changeType="changeTypeOfCurrent()"
+            @delete="deleteCurrent()"
+          >
+            <box :box-model="se" @click="selectBox(index)" @setText="setText" />
+          </element-tools>
         </div>
       </div>
 
@@ -21,14 +27,15 @@
       </button>
 
       <!-- Debug -->
-      <!-- <table class="w5 center tc" cell-spacing="0">
+      <table class="w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementIndex }}</td>
           <td class="ba pa1">{{ selectedElement.palette }}</td>
           <td class="ba pa1">{{ selectedElement.shader }}</td>
           <td class="ba pa1">{{ selectedElement.foreground }}</td>
+          <td class="ba pa1">{{ selectedElement.text }}</td>
         </tr>
-      </table> -->
+      </table>
     </main>
 
     <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-black-10">
@@ -51,7 +58,7 @@
         </tool-drawer>
 
         <tool-drawer
-          class="bg-black-30"
+          class="bg-black-10"
           :expanded="toolIs(ToolType.Foreground)"
         >
           <foreground-picker
@@ -78,6 +85,8 @@ import { computed, reactive } from "vue";
 import type { IAppState } from "./types/IAppState";
 import { ToolType } from "./types/ToolType";
 import { elementLike, initialBox } from "./data/StoryElementFactory";
+import ElementTools from "./components/ElementTools.vue";
+import { StoryElementType } from "./types/StoryElementType";
 
 const state = reactive<IAppState>({
   expandedTool: ToolType.None,
@@ -107,6 +116,21 @@ const addBox = () => {
   state.storyElements.push(elementLike(bottomElement.value));
 };
 
+const changeTypeOfCurrent = () => {
+  selectedElement.value.elementType = StoryElementType.Text;
+};
+
+const deleteCurrent = () => {
+  state.storyElements.splice(state.selectedElementIndex, 1);
+};
+
+const setText = (eventTarget: HTMLElement) => {
+  // const newText = eventTarget.innerText;
+  // selectedElement.value.text = newText;
+  // console.log("settext", newText);
+};
+
+const selectedIs = (i: number) => state.selectedElementIndex === i;
 const toolIs = (t: ToolType) => state.expandedTool === t;
 const expand = (t: ToolType) => {
   state.expandedTool = t;

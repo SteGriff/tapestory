@@ -20,4 +20,6 @@ import { type IStoryElement } from "@/types/IStoryElement";
 defineProps<{
   boxModel: IStoryElement;
 }>();
+
+defineEmits(["setText"]);
 </script>

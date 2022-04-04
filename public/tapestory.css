@@ -156,12 +156,16 @@ html {
 
 /* These need to come last for cascade reasons */
 
+.wrapper {
+  margin: 1.8rem 0; /* Used to be on box */
+  position: relative; /* So children can be pos:abs */
+}
+
 .box {
   min-height: 3rem;
   min-width: 3rem;
   border-radius: 0.5rem;
   padding: 1.8rem;
-  margin: 1.8rem 0;
 }
 
 .heading {
@@ -178,11 +182,11 @@ html {
 }
 
 .box:hover, .heading:hover, .btn:hover {
-  transform:scale(1.02);
+  transform:scale(1.01);
 }
 
 .box:active, .box:focus, 
 .heading:active, .heading:focus {
-  transform:scale(1.04);
+  transform:scale(1.03);
   outline: 2px solid var(--first);
 }
