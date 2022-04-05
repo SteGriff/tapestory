@@ -11,7 +11,10 @@
             @changeType="changeTypeOfCurrent()"
             @delete="deleteCurrent()"
           >
-            <box :box-model="se" @click="selectBox(index)" @setText="setText" />
+            <box
+              v-model="state.storyElements[index]"
+              @click="selectBox(index)"
+            />
           </element-tools>
         </div>
       </div>
@@ -122,12 +125,6 @@ const changeTypeOfCurrent = () => {
 
 const deleteCurrent = () => {
   state.storyElements.splice(state.selectedElementIndex, 1);
-};
-
-const setText = (eventTarget: HTMLElement) => {
-  // const newText = eventTarget.innerText;
-  // selectedElement.value.text = newText;
-  // console.log("settext", newText);
 };
 
 const selectedIs = (i: number) => state.selectedElementIndex === i;

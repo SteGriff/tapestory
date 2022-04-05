@@ -1,15 +1,20 @@
 <template>
   <div
-    contenteditable
-    class="box z-1 tc b pointer"
+    class="box z-1 pointer"
     :class="[
-      'shape' + boxModel.shape,
-      'shader' + boxModel.shader,
-      'palette' + boxModel.palette,
-      boxModel.foreground,
+      'shape' + modelValue.shape,
+      'shader' + modelValue.shader,
+      'palette' + modelValue.palette,
+      modelValue.foreground,
     ]"
   >
-    {{ boxModel.text }}
+    <input
+      type="text"
+      class="w-100 h-100 bn bg-transparent tc b"
+      :class="[modelValue.foreground]"
+      :value="modelValue.text"
+      @input="$emit('update:modelValue', mutate(modelValue, $event.target as HTMLInputElement))"
+    />
   </div>
 </template>
 
@@ -17,9 +22,21 @@
 import { defineProps } from "vue";
 import { type IStoryElement } from "@/types/IStoryElement";
 
+const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
+  const newting = { ...element, text: eventTarget.value };
+  console.log(newting);
+  return newting;
+};
+
 defineProps<{
-  boxModel: IStoryElement;
+  modelValue: IStoryElement;
 }>();
 
-defineEmits(["setText"]);
+defineEmits(["update:modelValue"]);
 </script>
+
+<style>
+.box input {
+  padding: 1.8rem;
+}
+</style>
