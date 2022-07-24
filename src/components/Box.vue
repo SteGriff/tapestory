@@ -7,20 +7,32 @@
       'palette' + modelValue.palette,
       modelValue.foreground,
     ]"
+    @click="editing = true"
   >
+    <div
+      class="w-100 h-100 bn bg-transparent tc b"
+      :class="[modelValue.foreground]"
+      v-show="!editing"
+    >
+      {{ modelValue.text }}
+    </div>
     <input
+      v-show="editing"
       type="text"
       class="w-100 h-100 bn bg-transparent tc b"
       :class="[modelValue.foreground]"
       :value="modelValue.text"
       @input="$emit('update:modelValue', mutate(modelValue, $event.target as HTMLInputElement))"
+      @blur="editing = false"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 import { type IStoryElement } from "@/types/IStoryElement";
+
+const editing = ref(false);
 
 const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
   const newting = { ...element, text: eventTarget.value };
@@ -36,7 +48,7 @@ defineEmits(["update:modelValue"]);
 </script>
 
 <style>
-.box input {
+.box * {
   padding: 1.8rem;
 }
 </style>
