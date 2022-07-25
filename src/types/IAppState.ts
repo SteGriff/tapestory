@@ -3,6 +3,7 @@ import { ToolType } from "./ToolType";
 
 export interface IAppState {
   expandedTool: ToolType;
-  storyElements: IStoryElement[];
-  selectedElementIndex: number;
+  storyElements: Record<string, IStoryElement>;
+  selectedElementId: string;
+  defaultElement: IStoryElement;
 }

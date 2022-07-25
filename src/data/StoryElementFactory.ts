@@ -1,10 +1,12 @@
 import type { IStoryElement } from "@/types/IStoryElement";
 import { StoryElementType } from "@/types/StoryElementType";
 import { randomFrom } from "@/utils/random";
+import cuid from "cuid";
 import { randomShaders, palettes } from "./Constants";
 
 export function initialBox(): IStoryElement {
   return {
+    id: cuid(),
     elementType: StoryElementType.Box,
     shape: "round",
     shader: "g13",
@@ -16,6 +18,7 @@ export function initialBox(): IStoryElement {
 
 export function randomBox(): IStoryElement {
   return {
+    id: cuid(),
     elementType: StoryElementType.Box,
     shape: "round",
     shader: randomFrom(randomShaders),
@@ -26,5 +29,5 @@ export function randomBox(): IStoryElement {
 }
 
 export function elementLike(el: IStoryElement) {
-  return { ...el };
+  return { ...el, id: cuid() };
 }

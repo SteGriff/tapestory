@@ -5,16 +5,13 @@
       @click="state.expandedTool = ToolType.None"
     >
       <div>
-        <div v-for="(se, index) in state.storyElements" :key="index">
+        <div v-for="(_, id) in state.storyElements" :key="id">
           <element-tools
-            :selected="selectedIs(index)"
+            :selected="selectedIs(id)"
             @changeType="changeTypeOfCurrent()"
             @delete="deleteCurrent()"
           >
-            <box
-              v-model="state.storyElements[index]"
-              @click="selectBox(index)"
-            />
+            <box v-model="state.storyElements[id]" @click="selectBox(id)" />
           </element-tools>
         </div>
       </div>
@@ -32,7 +29,7 @@
       <!-- Debug -->
       <table class="w5 center tc" cell-spacing="0">
         <tr>
-          <td class="ba pa1">{{ state.selectedElementIndex }}</td>
+          <td class="ba pa1">{{ state.selectedElementId }}</td>
           <td class="ba pa1">{{ selectedElement.palette }}</td>
           <td class="ba pa1">{{ selectedElement.shader }}</td>
           <td class="ba pa1">{{ selectedElement.foreground }}</td>
@@ -93,16 +90,18 @@ import { StoryElementType } from "./types/StoryElementType";
 
 const state = reactive<IAppState>({
   expandedTool: ToolType.None,
-  selectedElementIndex: 0,
+  selectedElementId: null,
   storyElements: [initialBox()],
+  defaultElement: initialBox(),
 });
 
 const selectedElement = computed(
-  () => state.storyElements[state.selectedElementIndex]
+  () => state.storyElements[state.selectedElementId] || state.defaultElement
 );
 
 const bottomElement = computed(
-  () => state.storyElements[state.storyElements.length - 1]
+  () =>
+    state.storyElements[state.storyElements.length - 1] || state.defaultElement
 );
 
 const bottomElementClasses = computed(() => [
@@ -112,7 +111,7 @@ const bottomElementClasses = computed(() => [
 ]);
 
 const selectBox = (index: number) => {
-  state.selectedElementIndex = index;
+  state.selectedElementId = index;
 };
 
 const addBox = () => {
@@ -124,10 +123,10 @@ const changeTypeOfCurrent = () => {
 };
 
 const deleteCurrent = () => {
-  state.storyElements.splice(state.selectedElementIndex, 1);
+  state.storyElements.splice(state.selectedElementId, 1);
 };
 
-const selectedIs = (i: number) => state.selectedElementIndex === i;
+const selectedIs = (id: string) => state.selectedElementId === id;
 const toolIs = (t: ToolType) => state.expandedTool === t;
 const expand = (t: ToolType) => {
   state.expandedTool = t;
