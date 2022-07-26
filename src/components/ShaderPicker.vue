@@ -20,10 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { shaders } from "@/data/Constants";
 
-const props = defineProps<{
+defineProps<{
   modelValue: string;
   palette: number;
 }>();

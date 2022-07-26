@@ -30,7 +30,7 @@ import paletteChips from "./PaletteChips.vue";
 
 let paletteList = computed(() => [...palettes]);
 
-const props = defineProps<{
+defineProps<{
   modelValue: number;
 }>();
 

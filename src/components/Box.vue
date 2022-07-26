@@ -29,14 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
 import { type IStoryElement } from "@/types/IStoryElement";
-
-const editing = ref(false);
 
 const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
   const newting = { ...element, text: eventTarget.value };
-  console.log(newting);
   return newting;
 };
 

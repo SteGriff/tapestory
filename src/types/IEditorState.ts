@@ -1,9 +1,10 @@
 import type { IStoryElement } from "./IStoryElement";
 import { ToolType } from "./ToolType";
 
-export interface IAppState {
+export interface IEditorState {
   expandedTool: ToolType;
   storyElements: Record<string, IStoryElement>;
-  selectedElementId: string;
+  selectedElementId: string | null;
+  editingElementId: string | null;
   defaultElement: IStoryElement;
 }

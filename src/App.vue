@@ -81,19 +81,14 @@ import shaderPicker from "./components/ShaderPicker.vue";
 import foregroundPicker from "./components/ForegroundPicker.vue";
 import toolDrawer from "./components/ToolDrawer.vue";
 
-import { computed, reactive } from "vue";
-import type { IAppState } from "./types/IAppState";
+import { computed } from "vue";
 import { ToolType } from "./types/ToolType";
-import { elementLike, initialBox } from "./data/StoryElementFactory";
+import { elementLike } from "./data/StoryElementFactory";
 import ElementTools from "./components/ElementTools.vue";
 import { StoryElementType } from "./types/StoryElementType";
+import { useEditorStore } from "./data/EditorStore";
 
-const state = reactive<IAppState>({
-  expandedTool: ToolType.None,
-  selectedElementId: null,
-  storyElements: [initialBox()],
-  defaultElement: initialBox(),
-});
+const state = useEditorStore();
 
 const selectedElement = computed(
   () => state.storyElements[state.selectedElementId] || state.defaultElement
