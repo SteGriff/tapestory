@@ -27,7 +27,7 @@
       </button>
 
       <!-- Debug -->
-      <table class="w5 center tc" cell-spacing="0">
+      <table class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
           <td class="ba pa1">{{ selectedElement.palette }}</td>
@@ -90,15 +90,18 @@ import { useEditorStore } from "./data/EditorStore";
 
 const state = useEditorStore();
 
+// Move all the computeds to the state/store sometime...
+
 const selectedElement = computed(
   () => state.storyElements[state.selectedElementId] || state.defaultElement
 );
 
 const bottomElement = computed(() => {
-  console.log(state.storyElements);
-  return (
-    state.storyElements[state.storyElements.length - 1] || state.defaultElement
-  );
+  const keys = Object.keys(state.storyElements);
+  const lastKey = keys[keys.length - 1];
+  const lastElement = state.storyElements[lastKey];
+  // console.log(keys, lastKey, lastElement);
+  return lastElement || state.defaultElement;
 });
 
 const bottomElementClasses = computed(() => [
@@ -121,7 +124,7 @@ const changeTypeOfCurrent = () => {
 };
 
 const deleteCurrent = () => {
-  state.storyElements.delete(state.selectedElementId);
+  delete state.storyElements[state.selectedElementId];
 };
 
 const selectedIs = (id: string) => state.selectedElementId === id;
