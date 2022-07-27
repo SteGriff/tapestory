@@ -1,4 +1,4 @@
 export enum StoryElementType {
   Box = 0,
-  Text = 1,
+  WordArt = 1,
 }

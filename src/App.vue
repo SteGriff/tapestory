@@ -5,18 +5,25 @@
       @click="state.expandedTool = ToolType.None"
     >
       <div>
-        <div v-for="(_, id) in state.storyElements" :key="id">
+        <div v-for="(el, id) in state.storyElements" :key="id">
           <element-tools
             :selected="selectedIs(id)"
             @changeType="changeTypeOfCurrent()"
             @delete="deleteCurrent()"
           >
-            <box v-model="state.storyElements[id]" @click="selectBox(id)" />
+            <box
+              v-if="el.elementType === StoryElementType.Box"
+              v-model="state.storyElements[id]"
+              @click="selectBox(id)"
+            />
+            <word-art
+              v-if="el.elementType === StoryElementType.WordArt"
+              v-model="state.storyElements[id]"
+              @click="selectBox(id)"
+            />
           </element-tools>
         </div>
       </div>
-
-      <!-- <h1 class="heading palette38 shaderg135">Hello World</h1> -->
 
       <button
         class="btn bn black pointer br-pill f2 w3 h3 db center tc"
@@ -30,6 +37,7 @@
       <table class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
+          <td class="ba pa1">{{ selectedElement.elementType }}</td>
           <td class="ba pa1">{{ selectedElement.palette }}</td>
           <td class="ba pa1">{{ selectedElement.shader }}</td>
           <td class="ba pa1">{{ selectedElement.foreground }}</td>
@@ -76,6 +84,7 @@
 
 <script setup lang="ts">
 import box from "@/components/Box.vue";
+import wordArt from "@/components/WordArt.vue";
 import palettePicker from "@/components/PalettePicker.vue";
 import shaderPicker from "./components/ShaderPicker.vue";
 import foregroundPicker from "./components/ForegroundPicker.vue";
@@ -120,7 +129,10 @@ const addBox = () => {
 };
 
 const changeTypeOfCurrent = () => {
-  selectedElement.value.elementType = StoryElementType.Text;
+  selectedElement.value.elementType =
+    selectedElement.value.elementType == StoryElementType.WordArt
+      ? StoryElementType.Box
+      : StoryElementType.WordArt;
 };
 
 const deleteCurrent = () => {

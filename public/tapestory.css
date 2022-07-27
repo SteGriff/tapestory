@@ -2,8 +2,13 @@ html {
   background: white;
 }
 
-.top-6 { top: 6rem; }
-.top-11 { top: 11rem; }
+.top-6 {
+  top: 6rem;
+}
+
+.top-11 {
+  top: 11rem;
+}
 
 .neu {
   border-radius: 1rem;
@@ -157,8 +162,10 @@ html {
 /* These need to come last for cascade reasons */
 
 .wrapper {
-  margin: 1.8rem 0; /* Used to be on box */
-  position: relative; /* So children can be pos:abs */
+  margin: 1.8rem 0;
+  /* Used to be on box */
+  position: relative;
+  /* So children can be pos:abs */
 }
 
 .box {
@@ -167,7 +174,7 @@ html {
   border-radius: 0.5rem;
 }
 
-.heading {
+.wordArt {
   font-weight: bold;
   font-size: 3rem;
   display: table;
@@ -176,16 +183,16 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-.box, .heading, .btn {
-  transition:transform 0.25s ease-out;
+.box, .wordArt, .btn {
+  transition: transform 0.25s ease-out;
 }
 
-.box:hover, .heading:hover, .btn:hover {
-  transform:scale(1.01);
+.box:hover, .wordArt:hover, .btn:hover {
+  transform: scale(1.01);
 }
 
-.box:active, .box:focus, 
-.heading:active, .heading:focus {
-  transform:scale(1.03);
+.box:active, .box:focus,
+.wordArt:active, .wordArt:focus {
+  transform: scale(1.03);
   outline: 2px solid var(--first);
 }
