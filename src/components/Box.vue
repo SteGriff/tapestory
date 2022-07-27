@@ -7,23 +7,13 @@
       'palette' + modelValue.palette,
       modelValue.foreground,
     ]"
-    @click="editing = true"
   >
-    <div
-      class="w-100 h-100 bn bg-transparent tc b"
-      :class="[modelValue.foreground]"
-      v-show="!editing"
-    >
-      {{ modelValue.text }}
-    </div>
     <input
-      v-show="editing"
       type="text"
       class="w-100 h-100 bn bg-transparent tc b"
       :class="[modelValue.foreground]"
       :value="modelValue.text"
       @input="$emit('update:modelValue', mutate(modelValue, $event.target as HTMLInputElement))"
-      @blur="editing = false"
     />
   </div>
 </template>
