@@ -14,6 +14,6 @@ export function initialBox(): IStoryElement {
   };
 }
 
-export function elementLike(el: IStoryElement) {
+export function elementLike(el: IStoryElement): IStoryElement {
   return { ...el, id: cuid() };
 }

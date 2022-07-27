@@ -94,10 +94,12 @@ const selectedElement = computed(
   () => state.storyElements[state.selectedElementId] || state.defaultElement
 );
 
-const bottomElement = computed(
-  () =>
+const bottomElement = computed(() => {
+  console.log(state.storyElements);
+  return (
     state.storyElements[state.storyElements.length - 1] || state.defaultElement
-);
+  );
+});
 
 const bottomElementClasses = computed(() => [
   "palette" + bottomElement.value.palette,
@@ -105,12 +107,13 @@ const bottomElementClasses = computed(() => [
   bottomElement.value.foreground,
 ]);
 
-const selectBox = (index: number) => {
-  state.selectedElementId = index;
+const selectBox = (id: string) => {
+  state.selectedElementId = id;
 };
 
 const addBox = () => {
-  state.storyElements.push(elementLike(bottomElement.value));
+  const newEl = elementLike(bottomElement.value);
+  state.storyElements[newEl.id] = newEl;
 };
 
 const changeTypeOfCurrent = () => {
@@ -118,7 +121,7 @@ const changeTypeOfCurrent = () => {
 };
 
 const deleteCurrent = () => {
-  state.storyElements.splice(state.selectedElementId, 1);
+  state.storyElements.delete(state.selectedElementId);
 };
 
 const selectedIs = (id: string) => state.selectedElementId === id;

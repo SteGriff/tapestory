@@ -11,8 +11,8 @@ const initialState = (): IEditorState => {
 
   return {
     expandedTool: ToolType.None,
-    selectedElementId: null,
-    editingElementId: null,
+    selectedElementId: "",
+    editingElementId: "",
     storyElements: elements,
     defaultElement: initialBox(),
   };
