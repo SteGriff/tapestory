@@ -5,11 +5,11 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "typecheck": "vue-tsc --noEmit",
+    "tsc": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "engines": {
-    "node": ">16"
+    "node": "16.x"
   },
   "dependencies": {
     "cuid": "^2.1.8",

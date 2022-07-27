@@ -22,8 +22,8 @@
 import { type IStoryElement } from "@/types/IStoryElement";
 
 const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
-  const newting = { ...element, text: eventTarget.value };
-  return newting;
+  const newbie = { ...element, text: eventTarget.value };
+  return newbie;
 };
 
 defineProps<{
