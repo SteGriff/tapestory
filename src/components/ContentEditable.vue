@@ -55,6 +55,7 @@ function update() {
 }
 function onPaste(event: ClipboardEvent) {
   event.preventDefault();
+  if (!event?.clipboardData) return;
   let text = event.clipboardData.getData("text/plain");
   if (props.noNl) {
     text = replaceAll(text, "\r\n", " ");

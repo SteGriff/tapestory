@@ -1,19 +1,12 @@
 <template>
   <content-editable
     tag="h1"
-    class="wordArt tc center"
+    class="wordArt mv0 tc center"
     :class="['shader' + modelValue.shader, 'palette' + modelValue.palette]"
     :text="modelValue.text"
     @input="$emit('update:modelValue', mutate(modelValue, $event.target as HTMLInputElement))"
     :no-nl="true"
   />
-  <!-- <h1
-    contenteditable="true"
-    class="wordArt tc center"
-    :class="['shader' + modelValue.shader, 'palette' + modelValue.palette]"
-  >
-    {{ modelValue.text }}
-  </h1> -->
 </template>
 
 <script setup lang="ts">

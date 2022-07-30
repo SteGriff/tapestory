@@ -7,4 +7,5 @@ export interface IEditorState {
   selectedElementId: string;
   editingElementId: string;
   defaultElement: IStoryElement;
+  debug: boolean;
 }

@@ -169,18 +169,23 @@ html {
 }
 
 .box {
-  min-height: 3rem;
-  min-width: 3rem;
+  min-height: 4.7rem;
+  min-width: 28rem;
   border-radius: 0.5rem;
 }
 
 .wordArt {
   font-weight: bold;
   font-size: 3rem;
+  line-height: 4.7rem;
   display: table;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.btn {
+  padding: 0;
 }
 
 .box, .wordArt, .btn {

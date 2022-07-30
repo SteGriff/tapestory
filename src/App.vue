@@ -34,7 +34,7 @@
       </button>
 
       <!-- Debug -->
-      <table class="mt3 w5 center tc" cell-spacing="0">
+      <table v-show="state.debug" class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
           <td class="ba pa1">{{ selectedElement.elementType }}</td>
@@ -77,6 +77,14 @@
             @expand="expand(ToolType.Foreground)"
           />
         </tool-drawer>
+
+        <button
+          type="button"
+          class="btn btn-tool ma3 tc pointer bg-white bn br-pill"
+          @click="state.debug = !state.debug"
+        >
+          🧠
+        </button>
       </div>
     </footer>
   </div>
