@@ -47,6 +47,16 @@ defineProps<{
   height: 1.9rem;
 }
 
+@media (screen and (min-width: 30em)) {
+  .btn-left {
+    left: -0.9rem;
+  }
+
+  .btn-right {
+    right: -0.9rem;
+  }
+}
+
 .btn-top {
   top: -1rem;
 }
@@ -56,10 +66,10 @@ defineProps<{
 }
 
 .btn-left {
-  left: -0.9rem;
+  left: -0.4rem;
 }
 
 .btn-right {
-  right: -0.9rem;
+  right: -0.4rem;
 }
 </style>
