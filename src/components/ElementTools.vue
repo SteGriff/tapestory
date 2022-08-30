@@ -12,6 +12,7 @@
       type="button"
       class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-mid btn-left"
       v-if="selected"
+      @click="$emit('connectBefore')"
     >
       〰
     </button>
@@ -19,6 +20,7 @@
       type="button"
       class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-mid btn-right"
       v-if="selected"
+      @click="$emit('connectAfter')"
     >
       〰
     </button>

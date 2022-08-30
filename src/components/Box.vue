@@ -19,15 +19,18 @@
 </template>
 
 <script setup lang="ts">
-import { type IStoryElement } from "@/types/IStoryElement";
+import { type IColourStoryElement } from "@/types/IStoryElement";
 
-const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
+const mutate = (
+  element: IColourStoryElement,
+  eventTarget: HTMLInputElement
+) => {
   const newbie = { ...element, text: eventTarget.value };
   return newbie;
 };
 
 defineProps<{
-  modelValue: IStoryElement;
+  modelValue: IColourStoryElement;
 }>();
 
 defineEmits(["update:modelValue"]);

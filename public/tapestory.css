@@ -163,7 +163,6 @@ html {
 
 .wrapper {
   margin: 1.8rem 0;
-  /* Used to be on box */
   position: relative;
   /* So children can be pos:abs */
 }

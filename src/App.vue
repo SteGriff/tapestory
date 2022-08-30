@@ -10,6 +10,8 @@
             :selected="selectedIs(id)"
             @changeType="changeTypeOfCurrent()"
             @delete="deleteCurrent()"
+            @connectBefore="connectBeforeCurrent()"
+            @connectAfter="connectAfterCurrent()"
           >
             <box
               v-if="el.elementType === StoryElementType.Box"
@@ -28,7 +30,7 @@
       <button
         class="btn bn black pointer br-pill f2 w3 h3 db center tc"
         :class="bottomElementClasses"
-        @click="addBox"
+        @click="state.addBox"
       >
         +
       </button>
@@ -100,7 +102,6 @@ import toolDrawer from "./components/ToolDrawer.vue";
 
 import { computed } from "vue";
 import { ToolType } from "./types/ToolType";
-import { elementLike } from "./data/StoryElementFactory";
 import ElementTools from "./components/ElementTools.vue";
 import { StoryElementType } from "./types/StoryElementType";
 import { useEditorStore } from "./data/EditorStore";
@@ -113,27 +114,15 @@ const selectedElement = computed(
   () => state.storyElements[state.selectedElementId] || state.defaultElement
 );
 
-const bottomElement = computed(() => {
-  const keys = Object.keys(state.storyElements);
-  const lastKey = keys[keys.length - 1];
-  const lastElement = state.storyElements[lastKey];
-  // console.log(keys, lastKey, lastElement);
-  return lastElement || state.defaultElement;
-});
-
 const bottomElementClasses = computed(() => [
-  "palette" + bottomElement.value.palette,
-  "shader" + bottomElement.value.shader,
-  bottomElement.value.foreground,
+  "palette" + state.bottomElement.palette,
+  "shader" + state.bottomElement.shader,
+  state.bottomElement.foreground,
 ]);
 
 const selectBox = (id: string) => {
+  console.log("selectBox", id);
   state.selectedElementId = id;
-};
-
-const addBox = () => {
-  const newEl = elementLike(bottomElement.value);
-  state.storyElements[newEl.id] = newEl;
 };
 
 const changeTypeOfCurrent = () => {
@@ -145,6 +134,20 @@ const changeTypeOfCurrent = () => {
 
 const deleteCurrent = () => {
   delete state.storyElements[state.selectedElementId];
+};
+
+const connectBeforeCurrent = () => {
+  selectedElement.value.elementType =
+    selectedElement.value.elementType == StoryElementType.WordArt
+      ? StoryElementType.Box
+      : StoryElementType.WordArt;
+};
+
+const connectAfterCurrent = () => {
+  selectedElement.value.elementType =
+    selectedElement.value.elementType == StoryElementType.WordArt
+      ? StoryElementType.Box
+      : StoryElementType.WordArt;
 };
 
 const selectedIs = (id: string) => state.selectedElementId === id;

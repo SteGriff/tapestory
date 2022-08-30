@@ -10,17 +10,20 @@
 </template>
 
 <script setup lang="ts">
-import { type IStoryElement } from "@/types/IStoryElement";
+import { type IColourStoryElement } from "@/types/IStoryElement";
 import contentEditable from "@/components/ContentEditable.vue";
 
-const mutate = (element: IStoryElement, eventTarget: HTMLInputElement) => {
+const mutate = (
+  element: IColourStoryElement,
+  eventTarget: HTMLInputElement
+) => {
   const newbie = { ...element, text: eventTarget.textContent };
   console.log(eventTarget, newbie);
   return newbie;
 };
 
 defineProps<{
-  modelValue: IStoryElement;
+  modelValue: IColourStoryElement;
 }>();
 
 defineEmits(["update:modelValue"]);

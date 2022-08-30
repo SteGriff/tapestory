@@ -1,11 +1,15 @@
 import { StoryElementType } from "./StoryElementType";
 
-export interface IStoryElement {
-  id: string;
-  elementType: StoryElementType;
+export interface IColourStoryElement extends IStoryElement {
   text: string;
-  shape: string;
   shader: string;
   palette: number;
   foreground: string;
+}
+
+export interface IStoryElement {
+  id: string;
+  order: number;
+  elementType: StoryElementType;
+  shape: string;
 }
