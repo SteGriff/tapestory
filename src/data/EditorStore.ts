@@ -22,8 +22,9 @@ const initialState = (): IEditorState => {
 export const useEditorStore = defineStore("editor", {
   state: () => initialState(),
   getters: {
-    orderedElements(state): IStoryElement[] {
-      const elementsCopy = [...state.storyElements];
+    orderedElements(): IStoryElement[] {
+      //const elementsCopy = [...this.storyElements];
+      const elementsCopy = [...this.storyElements.filter((se) => !se.deleted)];
       elementsCopy.sort((a: IStoryElement, b: IStoryElement) => {
         if (a.order < b.order) return -1;
         if (a.order > b.order) return 1;
@@ -31,10 +32,18 @@ export const useEditorStore = defineStore("editor", {
       });
       return elementsCopy;
     },
-    bottomElement(state): IStoryElement {
-      const lastElement = this.orderedElements[this.orderedElements.length];
-      // console.log(keys, lastKey, lastElement);
-      return lastElement || state.defaultElement;
+    selectedElement(): IStoryElement {
+      const index = this.storyElements.findIndex(
+        (se) => se.id === this.selectedElementId
+      );
+      const thing = this.storyElements[index] || this.defaultElement;
+      console.log("se", thing);
+      return thing;
+    },
+    bottomElement(): IStoryElement {
+      return (
+        this.orderedElements[this.orderedElements.length] || this.defaultElement
+      );
     },
   },
   actions: {

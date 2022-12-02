@@ -5,9 +5,9 @@
       @click="state.expandedTool = ToolType.None"
     >
       <div>
-        <div v-for="(el, id) in state.storyElements" :key="id">
+        <div v-for="el in state.orderedElements" :key="el.id">
           <element-tools
-            :selected="selectedIs(id)"
+            :selected="selectedIs(el.id)"
             @changeType="changeTypeOfCurrent()"
             @delete="deleteCurrent()"
             @connectBefore="connectBeforeCurrent()"
@@ -15,13 +15,13 @@
           >
             <box
               v-if="el.elementType === StoryElementType.Box"
-              v-model="state.storyElements[id]"
-              @click="selectBox(id)"
+              v-model="state.selectedElement"
+              @click="selectBox(el.id)"
             />
             <word-art
               v-if="el.elementType === StoryElementType.WordArt"
-              v-model="state.storyElements[id]"
-              @click="selectBox(id)"
+              v-model="state.selectedElement"
+              @click="selectBox(el.id)"
             />
           </element-tools>
         </div>
@@ -39,11 +39,12 @@
       <table v-show="state.debug" class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
-          <td class="ba pa1">{{ selectedElement.elementType }}</td>
-          <td class="ba pa1">{{ selectedElement.palette }}</td>
-          <td class="ba pa1">{{ selectedElement.shader }}</td>
-          <td class="ba pa1">{{ selectedElement.foreground }}</td>
-          <td class="ba pa1">{{ selectedElement.text }}</td>
+          <td class="ba pa1">{{ state.selectedElement.elementType }}</td>
+          <td class="ba pa1">{{ state.selectedElement.palette }}</td>
+          <td class="ba pa1">{{ state.selectedElement.shader }}</td>
+          <td class="ba pa1">{{ state.selectedElement.foreground }}</td>
+          <td class="ba pa1">{{ state.selectedElement.text }}</td>
+          <td class="ba pa1">{{ state.selectedElement.deleted }}</td>
         </tr>
       </table>
     </main>
@@ -52,7 +53,7 @@
       <div class="w-100 measure center flex">
         <tool-drawer class="bg-black-10" :expanded="toolIs(ToolType.Palette)">
           <palette-picker
-            v-model="selectedElement.palette"
+            v-model="state.selectedElement.palette"
             @expandCollapse="expandCollapse(ToolType.Palette)"
             @expand="expand(ToolType.Palette)"
           />
@@ -60,8 +61,8 @@
 
         <tool-drawer class="bg-black-20" :expanded="toolIs(ToolType.Shader)">
           <shader-picker
-            v-model="selectedElement.shader"
-            :palette="selectedElement.palette"
+            v-model="state.selectedElement.shader"
+            :palette="state.selectedElement.palette"
             @expandCollapse="expandCollapse(ToolType.Shader)"
             @expand="expand(ToolType.Shader)"
           />
@@ -72,9 +73,9 @@
           :expanded="toolIs(ToolType.Foreground)"
         >
           <foreground-picker
-            v-model="selectedElement.foreground"
-            :palette="selectedElement.palette"
-            :shader="selectedElement.shader"
+            v-model="state.selectedElement.foreground"
+            :palette="state.selectedElement.palette"
+            :shader="state.selectedElement.shader"
             @expandCollapse="expandCollapse(ToolType.Foreground)"
             @expand="expand(ToolType.Foreground)"
           />
@@ -110,10 +111,6 @@ const state = useEditorStore();
 
 // Move all the computeds to the state/store sometime...
 
-const selectedElement = computed(
-  () => state.storyElements[state.selectedElementId] || state.defaultElement
-);
-
 const bottomElementClasses = computed(() => [
   "palette" + state.bottomElement.palette,
   "shader" + state.bottomElement.shader,
@@ -126,26 +123,26 @@ const selectBox = (id: string) => {
 };
 
 const changeTypeOfCurrent = () => {
-  selectedElement.value.elementType =
-    selectedElement.value.elementType == StoryElementType.WordArt
+  state.selectedElement.value.elementType =
+    state.selectedElement.value.elementType == StoryElementType.WordArt
       ? StoryElementType.Box
       : StoryElementType.WordArt;
 };
 
 const deleteCurrent = () => {
-  delete state.storyElements[state.selectedElementId];
+  state.selectedElement.deleted = true;
 };
 
 const connectBeforeCurrent = () => {
-  selectedElement.value.elementType =
-    selectedElement.value.elementType == StoryElementType.WordArt
+  state.selectedElement.value.elementType =
+    state.selectedElement.value.elementType == StoryElementType.WordArt
       ? StoryElementType.Box
       : StoryElementType.WordArt;
 };
 
 const connectAfterCurrent = () => {
-  selectedElement.value.elementType =
-    selectedElement.value.elementType == StoryElementType.WordArt
+  state.selectedElement.value.elementType =
+    state.selectedElement.value.elementType == StoryElementType.WordArt
       ? StoryElementType.Box
       : StoryElementType.WordArt;
 };

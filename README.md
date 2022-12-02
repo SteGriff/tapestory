@@ -18,3 +18,11 @@ Requires Node >16
 npm i
 npm run start
 ```
+
+## Problem Notes
+
+2022-12-02
+
+Wrestling with element IDs. Elements have unique CIDs, but we can't edit them properly after looking them up by `.find`. See `state.selectedElement`.
+
+Want to remodel the UI so that a box is actually stateful in having view/edit modes, so text is not always one-click editable. This will make it easier to have click-drag interactions.
