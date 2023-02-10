@@ -2,18 +2,20 @@ html {
   background: white;
 }
 
-.top-6 {
-  top: 6rem;
+.l-50 {
+  left: 50%;
 }
 
-.top-11 {
-  top: 11rem;
+.t-50 {
+  top: 50%;
 }
 
-.neu {
-  border-radius: 1rem;
-  background: white;
-  box-shadow: 5px 5px 11px #c1c1c1, -5px -5px 11px #ffffff;
+.translate-center {
+  transform: translate(-50%, -50%);
+}
+
+.huge {
+  font-size: 5rem;
 }
 
 .selected {

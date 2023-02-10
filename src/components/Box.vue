@@ -2,13 +2,13 @@
   <div
     class="box z-1 tc b pointer"
     :class="[
-      'shape' + boxModel.shape,
-      'shader' + boxModel.shader,
-      'palette' + boxModel.palette,
-      boxModel.foreground,
+      'shape' + storyElement.shape,
+      'shader' + storyElement.shader,
+      'palette' + storyElement.palette,
+      storyElement.foreground,
     ]"
   >
-    {{ boxModel.text }}
+    {{ storyElement.text }}
   </div>
 </template>
 
@@ -16,7 +16,7 @@
 import { type IColourStoryElement } from "@/types/IStoryElement";
 
 defineProps<{
-  boxModel: IColourStoryElement;
+  storyElement: IColourStoryElement;
 }>();
 </script>
 

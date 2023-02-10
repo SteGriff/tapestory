@@ -4,6 +4,7 @@
       class="ph2 w-100 measure center mt4 mb5"
       @click="state.expandedTool = ToolType.None"
     >
+      <!-- The user generated story elements -->
       <div>
         <div v-for="el in state.orderedElements" :key="el.id">
           <element-tools
@@ -15,13 +16,12 @@
           >
             <box
               v-if="el.elementType === StoryElementType.Box"
-              :boxModel="el"
+              :story-element="el"
               @click="selectBox(el.id)"
             />
             <word-art
               v-if="el.elementType === StoryElementType.WordArt"
               :story-element="el"
-              :text="el.text"
               @click="selectBox(el.id)"
             />
           </element-tools>
@@ -50,6 +50,7 @@
       </table>
     </main>
 
+    <!-- Bottom toolbar -->
     <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-black-10">
       <div class="w-100 measure center flex">
         <tool-drawer class="bg-black-10" :expanded="toolIs(ToolType.Palette)">
@@ -91,6 +92,26 @@
         </button>
       </div>
     </footer>
+  </div>
+
+  <!-- Overlay background -->
+  <div
+    v-if="state.overlay"
+    class="overlay z-2 bg-dark-gray o-70 fixed absolute--fill"
+  ></div>
+
+  <!-- Overlay contents -->
+  <div v-if="state.overlay === 'edit'">
+    <div
+      class="z-3 white huge fixed right-2 top-1 pointer"
+      @click="state.overlay = ''"
+    >
+      &times;
+    </div>
+    <textarea
+      class="z-3 white bn bg-transparent huge b tc fixed t-50 l-50 translate-center w-90 ma2 pa1 ph3"
+      v-model="state.selectedElement.text"
+    ></textarea>
   </div>
 </template>
 
@@ -134,8 +155,8 @@ const deleteElement = (el) => {
   el.deleted = true;
 };
 
-const editText = (el) => {
-  el.text = "Changed";
+const editText = () => {
+  state.overlay = "edit";
 };
 
 const connectAfter = (el) => {

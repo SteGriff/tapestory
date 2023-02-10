@@ -15,6 +15,7 @@ const initialState = (): IEditorState => {
     editingElementId: "",
     storyElements: elements,
     defaultElement: initialBox(),
+    overlay: "",
     debug: false,
   };
 };

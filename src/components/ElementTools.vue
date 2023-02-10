@@ -2,7 +2,7 @@
   <div class="wrapper">
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-top btn-right"
+      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-right"
       v-if="selected"
       @click="$emit('delete')"
     >
@@ -10,15 +10,15 @@
     </button>
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-mid btn-left"
+      class="btn btn-tool tc f6 absolute pointer z-1 bg-white bn br-pill btn-mid btn-left"
       v-if="selected"
       @click="$emit('editText')"
     >
-      ✏
+      abc
     </button>
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-mid btn-right"
+      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-mid btn-right"
       v-if="selected"
       @click="$emit('connectAfter')"
     >
@@ -26,7 +26,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-999 bg-white bn br-pill btn-top btn-left"
+      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-left"
       v-if="selected"
       @click="$emit('changeType')"
     >

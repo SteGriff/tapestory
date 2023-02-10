@@ -26,3 +26,8 @@ npm run start
 Wrestling with element IDs. Elements have unique CIDs, but we can't edit them properly after looking them up by `.find`. See `state.selectedElement`.
 
 Want to remodel the UI so that a box is actually stateful in having view/edit modes, so text is not always one-click editable. This will make it easier to have click-drag interactions.
+
+2023-02-10
+
+Ok, I can get a handle on this. Giant overlay text editor when you clickt the 'abc' button on an element, we can do it!
+
