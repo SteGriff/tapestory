@@ -8,19 +8,20 @@
         <div v-for="el in state.orderedElements" :key="el.id">
           <element-tools
             :selected="selectedIs(el.id)"
-            @changeType="changeTypeOfCurrent()"
-            @delete="deleteCurrent()"
-            @connectBefore="connectBeforeCurrent()"
-            @connectAfter="connectAfterCurrent()"
+            @changeType="changeType(el)"
+            @delete="deleteElement(el)"
+            @editText="editText(el)"
+            @connectAfter="connectAfter(el)"
           >
             <box
               v-if="el.elementType === StoryElementType.Box"
-              v-model="state.selectedElement"
+              :boxModel="el"
               @click="selectBox(el.id)"
             />
             <word-art
               v-if="el.elementType === StoryElementType.WordArt"
-              v-model="state.selectedElement"
+              :story-element="el"
+              :text="el.text"
               @click="selectBox(el.id)"
             />
           </element-tools>
@@ -122,29 +123,23 @@ const selectBox = (id: string) => {
   state.selectedElementId = id;
 };
 
-const changeTypeOfCurrent = () => {
-  state.selectedElement.value.elementType =
-    state.selectedElement.value.elementType == StoryElementType.WordArt
+const changeType = (el) => {
+  el.elementType =
+    el.elementType == StoryElementType.WordArt
       ? StoryElementType.Box
       : StoryElementType.WordArt;
 };
 
-const deleteCurrent = () => {
-  state.selectedElement.deleted = true;
+const deleteElement = (el) => {
+  el.deleted = true;
 };
 
-const connectBeforeCurrent = () => {
-  state.selectedElement.value.elementType =
-    state.selectedElement.value.elementType == StoryElementType.WordArt
-      ? StoryElementType.Box
-      : StoryElementType.WordArt;
+const editText = (el) => {
+  el.text = "Changed";
 };
 
-const connectAfterCurrent = () => {
-  state.selectedElement.value.elementType =
-    state.selectedElement.value.elementType == StoryElementType.WordArt
-      ? StoryElementType.Box
-      : StoryElementType.WordArt;
+const connectAfter = (el) => {
+  el.text = el.text + "~~";
 };
 
 const selectedIs = (id: string) => state.selectedElementId === id;

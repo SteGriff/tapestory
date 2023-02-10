@@ -1,39 +1,23 @@
 <template>
   <div
-    class="box z-1 pointer"
+    class="box z-1 tc b pointer"
     :class="[
-      'shape' + modelValue.shape,
-      'shader' + modelValue.shader,
-      'palette' + modelValue.palette,
-      modelValue.foreground,
+      'shape' + boxModel.shape,
+      'shader' + boxModel.shader,
+      'palette' + boxModel.palette,
+      boxModel.foreground,
     ]"
   >
-    <input
-      type="text"
-      class="w-100 h-100 bn bg-transparent tc b"
-      :class="[modelValue.foreground]"
-      :value="modelValue.text"
-      @input="$emit('update:modelValue', mutate(modelValue, $event.target as HTMLInputElement))"
-    />
+    {{ boxModel.text }}
   </div>
 </template>
 
 <script setup lang="ts">
 import { type IColourStoryElement } from "@/types/IStoryElement";
 
-const mutate = (
-  element: IColourStoryElement,
-  eventTarget: HTMLInputElement
-) => {
-  const newbie = { ...element, text: eventTarget.value };
-  return newbie;
-};
-
 defineProps<{
-  modelValue: IColourStoryElement;
+  boxModel: IColourStoryElement;
 }>();
-
-defineEmits(["update:modelValue"]);
 </script>
 
 <style>
