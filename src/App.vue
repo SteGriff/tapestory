@@ -5,27 +5,25 @@
       @click="state.expandedTool = ToolType.None"
     >
       <!-- The user generated story elements -->
-      <div>
-        <div v-for="el in state.orderedElements" :key="el.id">
-          <element-tools
-            :selected="selectedIs(el.id)"
-            @changeType="changeType(el)"
-            @delete="deleteElement(el)"
-            @editText="editText(el)"
-            @connectAfter="connectAfter(el)"
-          >
-            <box
-              v-if="el.elementType === StoryElementType.Box"
-              :story-element="el"
-              @click="selectBox(el.id)"
-            />
-            <word-art
-              v-if="el.elementType === StoryElementType.WordArt"
-              :story-element="el"
-              @click="selectBox(el.id)"
-            />
-          </element-tools>
-        </div>
+      <div v-for="el in state.orderedElements" :key="el.id">
+        <element-tools
+          :selected="selectedIs(el.id)"
+          @changeType="changeType(el)"
+          @delete="deleteElement(el)"
+          @editText="editText(el)"
+          @connectAfter="connectAfter(el)"
+        >
+          <box
+            v-if="el.elementType === StoryElementType.Box"
+            :story-element="el"
+            @click="selectBox(el.id)"
+          />
+          <word-art
+            v-if="el.elementType === StoryElementType.WordArt"
+            :story-element="el"
+            @click="selectBox(el.id)"
+          />
+        </element-tools>
       </div>
 
       <button

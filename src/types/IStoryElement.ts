@@ -12,5 +12,6 @@ export interface IStoryElement {
   order: number;
   elementType: StoryElementType;
   shape: string;
+  alignment: string;
   deleted: boolean;
 }

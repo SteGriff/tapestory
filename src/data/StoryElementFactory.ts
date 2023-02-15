@@ -12,6 +12,8 @@ export function initialBox(): IColourStoryElement {
     palette: 1,
     foreground: "white",
     text: "Hello",
+    alignment: "center",
+    deleted: false
   };
 }
 
@@ -25,5 +27,7 @@ export function newConnector(order: number): IStoryElement {
     order: order,
     elementType: StoryElementType.Connector,
     shape: "1",
+    alignment: "center",
+    deleted: false
   };
 }

@@ -1,9 +1,10 @@
+import type { IProject } from "./IProject";
 import type { IStoryElement } from "./IStoryElement";
 import { ToolType } from "./ToolType";
 
 export interface IEditorState {
   expandedTool: ToolType;
-  storyElements: IStoryElement[];
+  project: IProject;
   selectedElementId: string;
   editingElementId: string;
   defaultElement: IStoryElement;
