@@ -27,8 +27,8 @@
       </div>
 
       <button
-        class="btn bn black pointer br-pill f2 w3 h3 db center tc"
-        :class="bottomElementClasses"
+        class="btn pa0 bn black pointer br-pill f2 w3 h3 db center tc"
+        :class="state.bottomElementClasses"
         @click="state.addBox"
       >
         +
@@ -83,10 +83,18 @@
 
         <button
           type="button"
-          class="btn btn-tool ma3 tc pointer bg-white bn br-pill"
+          class="btn pa0 btn-tool ma3 tc pointer bg-white bn br-pill"
           @click="state.debug = !state.debug"
         >
           🧠
+        </button>
+
+        <button
+          type="button"
+          class="btn ph3 b-btn mv3 mh2 tc pointer bg-white bn br-pill"
+          @click="editTitle()"
+        >
+          {{ state.project.name }}
         </button>
       </div>
     </footer>
@@ -98,17 +106,27 @@
     class="overlay z-2 bg-dark-gray o-70 fixed absolute--fill"
   ></div>
 
-  <!-- Overlay contents -->
-  <div v-if="state.overlay === 'edit'">
+  <!-- Overlay close btn pa0 -->
+  <div v-if="state.overlay">
     <div
       class="z-3 white huge fixed right-2 top-1 pointer"
       @click="state.overlay = ''"
     >
       &times;
     </div>
+  </div>
+
+  <!-- Overlay contents -->
+  <div v-if="state.overlay === 'edit'">
     <textarea
       class="z-3 white bn bg-transparent huge b tc fixed t-50 l-50 translate-center w-90 ma2 pa1 ph3"
       v-model="state.selectedElement.text"
+    ></textarea>
+  </div>
+  <div v-if="state.overlay === 'title'">
+    <textarea
+      class="z-3 white bn bg-transparent huge b tc fixed t-50 l-50 translate-center w-90 ma2 pa1 ph3"
+      v-model="state.project.name"
     ></textarea>
   </div>
 </template>
@@ -120,22 +138,13 @@ import palettePicker from "@/components/PalettePicker.vue";
 import shaderPicker from "./components/ShaderPicker.vue";
 import foregroundPicker from "./components/ForegroundPicker.vue";
 import toolDrawer from "./components/ToolDrawer.vue";
+import elementTools from "./components/ElementTools.vue";
 
-import { computed } from "vue";
 import { ToolType } from "./types/ToolType";
-import ElementTools from "./components/ElementTools.vue";
 import { StoryElementType } from "./types/StoryElementType";
 import { useEditorStore } from "./data/EditorStore";
 
 const state = useEditorStore();
-
-// Move all the computeds to the state/store sometime...
-
-const bottomElementClasses = computed(() => [
-  "palette" + state.bottomElement.palette,
-  "shader" + state.bottomElement.shader,
-  state.bottomElement.foreground,
-]);
 
 const selectBox = (id: string) => {
   console.log("selectBox", id);
@@ -155,6 +164,10 @@ const deleteElement = (el) => {
 
 const editText = () => {
   state.overlay = "edit";
+};
+
+const editTitle = () => {
+  state.overlay = "title";
 };
 
 const connectAfter = (el) => {

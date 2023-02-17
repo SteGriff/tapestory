@@ -2,7 +2,7 @@
   <div class="wrapper">
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-right"
+      class="btn pa0 btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-right"
       v-if="selected"
       @click="$emit('delete')"
     >
@@ -10,7 +10,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-tool tc f6 absolute pointer z-1 bg-white bn br-pill btn-mid btn-left"
+      class="btn pa0 btn-tool tc f6 absolute pointer z-1 bg-white bn br-pill btn-mid btn-left"
       v-if="selected"
       @click="$emit('editText')"
     >
@@ -18,7 +18,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-mid btn-right"
+      class="btn pa0 btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-mid btn-right"
       v-if="selected"
       @click="$emit('connectAfter')"
     >
@@ -26,7 +26,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-left"
+      class="btn pa0 btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-left"
       v-if="selected"
       @click="$emit('changeType')"
     >
@@ -42,13 +42,6 @@ defineProps<{
 </script>
 
 <style>
-.btn-tool {
-  box-shadow: 0px 4px 16px rgba(5, 0, 56, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  width: 1.9rem;
-  height: 1.9rem;
-}
-
 @media (screen and (min-width: 30em)) {
   .btn-left {
     left: -0.9rem;

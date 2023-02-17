@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { type IEditorState } from "@/types/IEditorState";
 import { ToolType } from "@/types/ToolType";
 import { elementLike, initialBox } from "./StoryElementFactory";
-import type { IStoryElement } from "@/types/IStoryElement";
+import type { IColourStoryElement, IStoryElement } from "@/types/IStoryElement";
 import type { IProject } from "@/types/IProject";
 import cuid from "cuid";
 
@@ -55,6 +55,14 @@ export const useEditorStore = defineStore("editor", {
         this.orderedElements[this.orderedElements.length - 1] || this.defaultElement
       );
     },
+    bottomElementClasses(): string[] {
+      const bottomColouredEl = this.bottomElement as IColourStoryElement;
+      return [
+        "palette" + bottomColouredEl.palette,
+        "shader" + bottomColouredEl.shader,
+        bottomColouredEl.foreground,
+      ]
+    }
   },
   actions: {
     addBox() {
