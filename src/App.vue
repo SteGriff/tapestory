@@ -110,7 +110,7 @@
   <div v-if="state.overlay">
     <div
       class="z-3 white huge fixed right-2 top-1 pointer"
-      @click="state.overlay = ''"
+      @click="closeOverlay()"
     >
       &times;
     </div>
@@ -156,10 +156,12 @@ const changeType = (el) => {
     el.elementType == StoryElementType.WordArt
       ? StoryElementType.Box
       : StoryElementType.WordArt;
+  state.saveProjectLocal();
 };
 
 const deleteElement = (el) => {
   el.deleted = true;
+  state.saveProjectLocal();
 };
 
 const editText = () => {
@@ -172,6 +174,11 @@ const editTitle = () => {
 
 const connectAfter = (el) => {
   el.text = el.text + "~~";
+};
+
+const closeOverlay = () => {
+  state.overlay = "";
+  state.saveProjectLocal();
 };
 
 const selectedIs = (id: string) => state.selectedElementId === id;

@@ -19,12 +19,20 @@ const initialProject = (): IProject => {
   };
 }
 
+const loadProjectLocal = (): IProject | null => {
+  const projectJson = localStorage.getItem("project");
+  if (projectJson)
+    return JSON.parse(projectJson) as IProject;
+
+  return null;
+}
+
 const initialState = (): IEditorState => {
   return {
     expandedTool: ToolType.None,
     selectedElementId: "",
     editingElementId: "",
-    project: initialProject(),
+    project: loadProjectLocal() || initialProject(),
     defaultElement: initialBox(),
     overlay: "",
     debug: false,
@@ -71,6 +79,11 @@ export const useEditorStore = defineStore("editor", {
         this.bottomElement.order
       );
       this.project.storyElements.push(newEl);
+      this.saveProjectLocal();
     },
+    saveProjectLocal() {
+      const projectJson = JSON.stringify(this.project);
+      localStorage.setItem('project', projectJson);
+    }
   },
 });
