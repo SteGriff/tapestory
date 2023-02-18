@@ -31,7 +31,7 @@ Long-term, the server will allow any tapestory to be saved anonymously anytime, 
 
 ## Visual Design Notes
 
-Earlier versions made the + button follow the most recent style; this has been lost, it would be nice to have it back.
+~~Earlier versions made the + button follow the most recent style; this has been lost, it would be nice to have it back.~~ Done :)
 
 Need to experiment with restricting the palettes:
 
@@ -43,13 +43,18 @@ Need a way to change background colour (pick from palette/black/white)
 
 ## TODO
 
-- [ ] Localstorage
+- [x] Localstorage
 - [ ] PWA
 - [x] StoryProject data like background colour, title, ID
 - [ ] Background colour
 - [x] - button should follow latest
 - [ ] Global palette? Experiment
-- [ ] Writing prompts
+- [x] Writing prompts
+- [ ] Help button
+- [x] "Fresh Project" button
+- [ ] Experiment with bottom toolbar - split by project/element?
+
+What to call the story elements, for users? Cards? Blocks? Elements?
 
 ## Problem Notes
 

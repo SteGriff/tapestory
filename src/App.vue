@@ -56,6 +56,7 @@
             v-model="state.selectedElement.palette"
             @expandCollapse="expandCollapse(ToolType.Palette)"
             @expand="expand(ToolType.Palette)"
+            @update:modelValue="state.saveProjectLocal()"
           />
         </tool-drawer>
 
@@ -65,6 +66,7 @@
             :palette="state.selectedElement.palette"
             @expandCollapse="expandCollapse(ToolType.Shader)"
             @expand="expand(ToolType.Shader)"
+            @update:modelValue="state.saveProjectLocal()"
           />
         </tool-drawer>
 
@@ -78,20 +80,22 @@
             :shader="state.selectedElement.shader"
             @expandCollapse="expandCollapse(ToolType.Foreground)"
             @expand="expand(ToolType.Foreground)"
+            @update:modelValue="state.saveProjectLocal()"
           />
         </tool-drawer>
 
         <button
           type="button"
-          class="btn pa0 btn-tool ma3 tc pointer bg-white bn br-pill"
-          @click="state.debug = !state.debug"
+          class="btn btn-tool b-btn btn-flex pa0 ma3 tc pointer bg-white br-pill"
+          @click="state.newProject()"
+          @click.right="state.debug = !state.debug"
         >
-          🧠
+          🧾
         </button>
 
         <button
           type="button"
-          class="btn ph3 b-btn mv3 mh2 tc pointer bg-white bn br-pill"
+          class="btn btn-height b-btn btn-flex ph3 mv3 mh2 tc pointer bg-white br-pill"
           @click="editTitle()"
         >
           {{ state.project.name }}

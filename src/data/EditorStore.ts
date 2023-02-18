@@ -21,9 +21,11 @@ const initialProject = (): IProject => {
 
 const loadProjectLocal = (): IProject | null => {
   const projectJson = localStorage.getItem("project");
-  if (projectJson)
+  if (projectJson) {
+    console.log("Load!");
     return JSON.parse(projectJson) as IProject;
-
+  }
+  console.log("Nothing to load - start from scratch!");
   return null;
 }
 
@@ -82,8 +84,12 @@ export const useEditorStore = defineStore("editor", {
       this.saveProjectLocal();
     },
     saveProjectLocal() {
+      console.log("Save!");
       const projectJson = JSON.stringify(this.project);
       localStorage.setItem('project', projectJson);
+    },
+    newProject() {
+      this.project = initialProject();
     }
   },
 });

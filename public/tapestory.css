@@ -190,8 +190,19 @@ html {
 }
 
 .btn-tool {
-  width: 1.9rem;
-  height: 1.9rem;
+  max-width: 1.9rem;
+  min-width: 1.9rem;
+  max-height: 1.9rem;
+  min-height: 1.9rem;
+}
+
+.btn-height {
+  max-height: 1.9rem;
+  min-height: 1.9rem;
+}
+
+.btn-flex {
+  flex: 0 0 auto;
 }
 
 .box, .wordArt, .btn {

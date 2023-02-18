@@ -1,6 +1,7 @@
 import type { IColourStoryElement, IStoryElement } from "@/types/IStoryElement";
 import { StoryElementType } from "@/types/StoryElementType";
 import cuid from "cuid";
+import { randomPrompt } from "./prompts";
 
 export function initialBox(): IColourStoryElement {
   return {
@@ -11,7 +12,7 @@ export function initialBox(): IColourStoryElement {
     shader: "g13",
     palette: 1,
     foreground: "white",
-    text: "Hello",
+    text: randomPrompt(),
     alignment: "center",
     deleted: false
   };
