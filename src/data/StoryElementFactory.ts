@@ -1,7 +1,7 @@
 import type { IColourStoryElement, IStoryElement } from "@/types/IStoryElement";
 import { StoryElementType } from "@/types/StoryElementType";
 import cuid from "cuid";
-import { randomPrompt } from "./prompts";
+import { randomPrompt } from "./Prompts"
 
 export function initialBox(): IColourStoryElement {
   return {

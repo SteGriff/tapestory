@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { type IEditorState } from "@/types/IEditorState";
 import { ToolType } from "@/types/ToolType";
-import { elementLike, initialBox } from "./StoryElementFactory";
+import { elementLike, newConnector, initialBox } from "./StoryElementFactory";
 import type { IColourStoryElement, IStoryElement } from "@/types/IStoryElement";
 import type { IProject } from "@/types/IProject";
 import cuid from "cuid";
@@ -81,6 +81,11 @@ export const useEditorStore = defineStore("editor", {
         this.bottomElement.order
       );
       this.project.storyElements.push(newEl);
+      this.saveProjectLocal();
+    },
+    addConnector(order: number) {
+      const connector: IStoryElement = newConnector(order);
+      this.project.storyElements.push(connector);
       this.saveProjectLocal();
     },
     saveProjectLocal() {

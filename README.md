@@ -43,16 +43,27 @@ Need a way to change background colour (pick from palette/black/white)
 
 ## TODO
 
+### App
+
 - [x] Localstorage
 - [ ] PWA
+
+### Project/Story
+
 - [x] StoryProject data like background colour, title, ID
-- [ ] Background colour
-- [x] - button should follow latest
-- [ ] Global palette? Experiment
-- [x] Writing prompts
-- [ ] Help button
 - [x] "Fresh Project" button
-- [ ] Experiment with bottom toolbar - split by project/element?
+- [ ] Background colour
+- [ ] Global palette? Experiment
+- [ ] Bottom toolbar - split by project/element?
+
+### UI
+
+- [x] - button should follow latest
+- [x] Writing prompts
+- [ ] Help button against initial prompt
+- [ ] Slide elements side-to-side
+- [ ] Add connectors and flourishes
+- [ ] Reorder elements with drag'n'drop
 
 What to call the story elements, for users? Cards? Blocks? Elements?
 

@@ -23,6 +23,11 @@
             :story-element="el"
             @click="selectBox(el.id)"
           />
+          <connector
+            v-if="el.elementType === StoryElementType.Connector"
+            :story-element="el"
+            @click="selectBox(el.id)"
+          />
         </element-tools>
       </div>
 
@@ -177,7 +182,7 @@ const editTitle = () => {
 };
 
 const connectAfter = (el) => {
-  el.text = el.text + "~~";
+  state.addConnector(el.order + 1);
 };
 
 const closeOverlay = () => {
