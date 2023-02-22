@@ -43,12 +43,13 @@
       <table v-show="state.debug" class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
-          <td class="ba pa1">{{ state.selectedElement.elementType }}</td>
-          <td class="ba pa1">{{ state.selectedElement.palette }}</td>
-          <td class="ba pa1">{{ state.selectedElement.shader }}</td>
-          <td class="ba pa1">{{ state.selectedElement.foreground }}</td>
+          <td class="ba pa1">typ {{ state.selectedElement.elementType }}</td>
+          <td class="ba pa1">pal {{ state.selectedElement.palette }}</td>
+          <td class="ba pa1">shd {{ state.selectedElement.shader }}</td>
+          <td class="ba pa1">fgc {{ state.selectedElement.foreground }}</td>
           <td class="ba pa1">{{ state.selectedElement.text }}</td>
-          <td class="ba pa1">{{ state.selectedElement.deleted }}</td>
+          <td class="ba pa1">ord {{ state.selectedElement.order }}</td>
+          <td class="ba pa1">del {{ state.selectedElement.deleted }}</td>
         </tr>
       </table>
     </main>
@@ -143,6 +144,7 @@
 <script setup lang="ts">
 import box from "@/components/Box.vue";
 import wordArt from "@/components/WordArt.vue";
+import connector from "@/components/Connector.vue";
 import palettePicker from "@/components/PalettePicker.vue";
 import shaderPicker from "./components/ShaderPicker.vue";
 import foregroundPicker from "./components/ForegroundPicker.vue";

@@ -62,7 +62,8 @@ Need a way to change background colour (pick from palette/black/white)
 - [x] Writing prompts
 - [ ] Help button against initial prompt
 - [ ] Slide elements side-to-side
-- [ ] Add connectors and flourishes
+- [x] Add connectors and flourishes
+- [ ] Connector tools - width, type, colour, remove N/A tooling
 - [ ] Reorder elements with drag'n'drop
 
 What to call the story elements, for users? Cards? Blocks? Elements?

@@ -78,15 +78,22 @@ export const useEditorStore = defineStore("editor", {
     addBox() {
       const newEl: IStoryElement = elementLike(
         this.bottomElement,
-        this.bottomElement.order
+        this.bottomElement.order + 1,
       );
       this.project.storyElements.push(newEl);
       this.saveProjectLocal();
     },
     addConnector(order: number) {
       const connector: IStoryElement = newConnector(order);
+      this.shift(order);
       this.project.storyElements.push(connector);
       this.saveProjectLocal();
+    },
+    shift(order: number) {
+      // Shift elements after ordinal x up by 1 to make room
+      this.project.storyElements
+        .filter(se => se.order >= order)
+        .forEach(se => se.order++);
     },
     saveProjectLocal() {
       console.log("Save!");
