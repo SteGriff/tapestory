@@ -70,18 +70,6 @@ html {
   background: var(--fifth);
 }
 
-.sqr32 {
-  height: 32px;
-  min-height: 32px;
-  width: 32px;
-  min-width: 32px;
-}
-
-.palSlice {
-  width: 6px;
-  height: 30px;
-}
-
 .shapeRound {
   border-radius: 0.5rem;
 }
@@ -107,38 +95,40 @@ html {
 }
 
 .shaderg13 {
-  background: linear-gradient(90deg,
-      var(--first) 0%,
-      var(--third) 100%);
+  background: linear-gradient(90deg, var(--first) 0%, var(--third) 100%);
 }
 
 .shaderg234 {
-  background: linear-gradient(90deg,
-      var(--second) 0%,
-      var(--third) 50%,
-      var(--fourth) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--second) 0%,
+    var(--third) 50%,
+    var(--fourth) 100%
+  );
 }
 
 .shaderg35 {
-  background: linear-gradient(90deg,
-      var(--third) 0%,
-      var(--fifth) 100%);
+  background: linear-gradient(90deg, var(--third) 0%, var(--fifth) 100%);
 }
 
 .shaderg135 {
-  background: linear-gradient(90deg,
-      var(--first) 0%,
-      var(--third) 50%,
-      var(--fifth) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--first) 0%,
+    var(--third) 50%,
+    var(--fifth) 100%
+  );
 }
 
 .shaderg12345 {
-  background: linear-gradient(90deg,
-      var(--first) 0%,
-      var(--second) 20%,
-      var(--third) 40%,
-      var(--fourth) 60%,
-      var(--fifth) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--first) 0%,
+    var(--second) 20%,
+    var(--third) 40%,
+    var(--fourth) 60%,
+    var(--fifth) 100%
+  );
 }
 
 .shaderc1 {
@@ -152,15 +142,11 @@ html {
 }
 
 .shaderh23 {
-  background: linear-gradient(120deg,
-      var(--second) 49.9%,
-      var(--third) 50.1%);
+  background: linear-gradient(120deg, var(--second) 49.9%, var(--third) 50.1%);
 }
 
 .shaderh34 {
-  background: linear-gradient(120deg,
-      var(--third) 49.9%,
-      var(--fourth) 50.1%);
+  background: linear-gradient(120deg, var(--third) 49.9%, var(--fourth) 50.1%);
 }
 
 /* These need to come last for cascade reasons */
@@ -190,46 +176,6 @@ html {
   fill: none;
   stroke: #000000;
 }
-.drawer .csvg {
-  stroke-width: 2px;
-}
 .connector .csvg {
-  stroke-width: .25px;
-}
-
-/* UI tools */
-
-.btn-tool, .b-btn {
-  box-shadow: 0px 4px 16px rgba(5, 0, 56, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.btn-tool {
-  max-width: 1.9rem;
-  min-width: 1.9rem;
-  max-height: 1.9rem;
-  min-height: 1.9rem;
-}
-
-.btn-height {
-  max-height: 1.9rem;
-  min-height: 1.9rem;
-}
-
-.btn-flex {
-  flex: 0 0 auto;
-}
-
-.box, .wordArt, .btn {
-  transition: transform 0.25s ease-out;
-}
-
-.box:hover, .wordArt:hover, .btn:hover {
-  transform: scale(1.01);
-}
-
-.box:active, .box:focus,
-.wordArt:active, .wordArt:focus {
-  transform: scale(1.03);
-  outline: 2px solid var(--first);
+  stroke-width: 0.25px;
 }

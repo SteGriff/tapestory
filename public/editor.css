@@ -1,0 +1,63 @@
+/* UI Overrides */
+
+.drawer .csvg {
+  stroke-width: 2px;
+}
+
+/* UI tools */
+
+.sqr32 {
+  height: 32px;
+  min-height: 32px;
+  width: 32px;
+  min-width: 32px;
+}
+
+.palSlice {
+  width: 6px;
+  height: 30px;
+}
+
+.btn-tool,
+.b-btn {
+  box-shadow: 0px 4px 16px rgba(5, 0, 56, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.btn-tool {
+  max-width: 1.9rem;
+  min-width: 1.9rem;
+  max-height: 1.9rem;
+  min-height: 1.9rem;
+}
+
+.btn-height {
+  max-height: 1.9rem;
+  min-height: 1.9rem;
+}
+
+.btn-flex {
+  flex: 0 0 auto;
+}
+
+/* UI Interactivity */
+
+.box,
+.wordArt,
+.btn {
+  transition: transform 0.25s ease-out;
+}
+
+.box:hover,
+.wordArt:hover,
+.btn:hover {
+  transform: scale(1.01);
+}
+
+.box:active,
+.box:focus,
+.wordArt:active,
+.wordArt:focus {
+  transform: scale(1.03);
+  outline: 2px solid var(--first);
+}
