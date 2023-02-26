@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
-import { type IEditorState } from "@/types/IEditorState";
-import { ToolType } from "@/types/ToolType";
-import { elementLike, newConnector, initialBox } from "./StoryElementFactory";
+import type { IEditorState } from "@/types/IEditorState";
 import type { IColourStoryElement, IStoryElement } from "@/types/IStoryElement";
 import type { IProject } from "@/types/IProject";
+import { ToolType } from "@/types/ToolType";
+import { elementLike, newConnector, initialBox } from "./StoryElementFactory";
 import cuid from "cuid";
 
 const initialProject = (): IProject => {

@@ -11,7 +11,7 @@
     <button
       type="button"
       class="btn pa0 btn-tool tc f6 absolute pointer z-1 bg-white bn br-pill btn-mid btn-left"
-      v-if="selected"
+      v-if="selected && hasText"
       @click="$emit('editText')"
     >
       abc
@@ -27,7 +27,7 @@
     <button
       type="button"
       class="btn pa0 btn-tool tc absolute pointer z-1 bg-white bn br-pill btn-top btn-left"
-      v-if="selected"
+      v-if="selected && hasSparkles"
       @click="$emit('changeType')"
     >
       ✨
@@ -38,6 +38,8 @@
 <script setup lang="ts">
 defineProps<{
   selected: boolean;
+  hasText: boolean;
+  hasSparkles: boolean;
 }>();
 </script>
 

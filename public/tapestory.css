@@ -184,6 +184,19 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+.csvg {
+  fill: none;
+  stroke: #000000;
+}
+.drawer .csvg {
+  stroke-width: 2px;
+}
+.connector .csvg {
+  stroke-width: .25px;
+}
+
+/* UI tools */
+
 .btn-tool, .b-btn {
   box-shadow: 0px 4px 16px rgba(5, 0, 56, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.5);

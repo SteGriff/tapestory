@@ -28,3 +28,13 @@ export const foregrounds: string[] = [
   "fourth",
   "fifth",
 ];
+
+export const connectors: string[] = [
+  "1",
+  "2",
+  "3",
+]
+
+export const shapes: string[] = [
+  "round"
+]

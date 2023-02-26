@@ -8,6 +8,8 @@
       <div v-for="el in state.orderedElements" :key="el.id">
         <element-tools
           :selected="selectedIs(el.id)"
+          :hasText="hasText(el.elementType)"
+          :hasSparkles="hasText(el.elementType)"
           @changeType="changeType(el)"
           @delete="deleteElement(el)"
           @editText="editText(el)"
@@ -57,7 +59,26 @@
     <!-- Bottom toolbar -->
     <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-black-10">
       <div class="w-100 measure center flex">
-        <tool-drawer class="bg-black-10" :expanded="toolIs(ToolType.Palette)">
+        <tool-drawer
+          v-if="shapesFor(state.selectedElement.elementType).length > 1"
+          class="bg-black-10"
+          :expanded="toolIs(ToolType.Shape)"
+        >
+          <!-- Shapes == connectors for now -->
+          <shape-picker
+            v-model="state.selectedElement.shape"
+            :shapes="shapesFor(state.selectedElement.elementType)"
+            @expandCollapse="expandCollapse(ToolType.Shape)"
+            @expand="expand(ToolType.Shape)"
+            @update:modelValue="state.saveProjectLocal()"
+          />
+        </tool-drawer>
+
+        <tool-drawer
+          v-if="state.selectedElement.palette"
+          class="bg-black-10"
+          :expanded="toolIs(ToolType.Palette)"
+        >
           <palette-picker
             v-model="state.selectedElement.palette"
             @expandCollapse="expandCollapse(ToolType.Palette)"
@@ -66,7 +87,11 @@
           />
         </tool-drawer>
 
-        <tool-drawer class="bg-black-20" :expanded="toolIs(ToolType.Shader)">
+        <tool-drawer
+          v-if="state.selectedElement.shader"
+          class="bg-black-20"
+          :expanded="toolIs(ToolType.Shader)"
+        >
           <shader-picker
             v-model="state.selectedElement.shader"
             :palette="state.selectedElement.palette"
@@ -77,6 +102,7 @@
         </tool-drawer>
 
         <tool-drawer
+          v-if="state.selectedElement.foreground"
           class="bg-black-10"
           :expanded="toolIs(ToolType.Foreground)"
         >
@@ -145,15 +171,17 @@
 import box from "@/components/Box.vue";
 import wordArt from "@/components/WordArt.vue";
 import connector from "@/components/Connector.vue";
+import shapePicker from "@/components/ShapePicker.vue";
 import palettePicker from "@/components/PalettePicker.vue";
-import shaderPicker from "./components/ShaderPicker.vue";
-import foregroundPicker from "./components/ForegroundPicker.vue";
-import toolDrawer from "./components/ToolDrawer.vue";
-import elementTools from "./components/ElementTools.vue";
+import shaderPicker from "@/components/ShaderPicker.vue";
+import foregroundPicker from "@/components/ForegroundPicker.vue";
+import toolDrawer from "@/components/ToolDrawer.vue";
+import elementTools from "@/components/ElementTools.vue";
 
-import { ToolType } from "./types/ToolType";
-import { StoryElementType } from "./types/StoryElementType";
-import { useEditorStore } from "./data/EditorStore";
+import { ToolType } from "@/types/ToolType";
+import { StoryElementType } from "@/types/StoryElementType";
+import { useEditorStore } from "@/data/EditorStore";
+import { shapesFor } from "@/logic/shapes";
 
 const state = useEditorStore();
 
@@ -192,7 +220,9 @@ const closeOverlay = () => {
   state.saveProjectLocal();
 };
 
+// Tool selection stuff
 const selectedIs = (id: string) => state.selectedElementId === id;
+const hasText = (elementType: StoryElementType) => elementType < 2;
 const toolIs = (t: ToolType) => state.expandedTool === t;
 const expand = (t: ToolType) => {
   state.expandedTool = t;
