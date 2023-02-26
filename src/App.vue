@@ -57,11 +57,11 @@
     </main>
 
     <!-- Bottom toolbar -->
-    <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-black-10">
+    <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-mid-gray">
       <div class="w-100 measure center flex">
         <tool-drawer
           v-if="shapesFor(state.selectedElement.elementType).length > 1"
-          class="bg-black-10"
+          class="bg-moon-gray"
           :expanded="toolIs(ToolType.Shape)"
         >
           <!-- Shapes == connectors for now -->
@@ -76,7 +76,7 @@
 
         <tool-drawer
           v-if="state.selectedElement.palette"
-          class="bg-black-10"
+          class="bg-moon-gray"
           :expanded="toolIs(ToolType.Palette)"
         >
           <palette-picker
@@ -89,7 +89,7 @@
 
         <tool-drawer
           v-if="state.selectedElement.shader"
-          class="bg-black-20"
+          class="bg-light-gray"
           :expanded="toolIs(ToolType.Shader)"
         >
           <shader-picker
@@ -103,7 +103,7 @@
 
         <tool-drawer
           v-if="state.selectedElement.foreground"
-          class="bg-black-10"
+          class="bg-moon-gray"
           :expanded="toolIs(ToolType.Foreground)"
         >
           <foreground-picker

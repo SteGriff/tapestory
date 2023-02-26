@@ -1,6 +1,6 @@
 <template>
-  <div class="mh1 ba b--black br-pill" @click="$emit('expandCollapse')">
-    <svg-img :name="'c' + modelValue" width="32" height="32" />
+  <div class="mh1 ba b--black br2 sqr32" @click="$emit('expandCollapse')">
+    <svg-img :name="'c' + modelValue" width="29" height="29" />
   </div>
 
   <div
@@ -14,7 +14,7 @@
       }
     "
   >
-    <svg-img :name="'c' + s" width="32" height="32" />
+    <svg-img :name="'c' + s" width="29" height="29" />
   </div>
 </template>
 
@@ -31,3 +31,4 @@ const shapeList = computed(() => [...props.shapes]);
 
 defineEmits(["expand", "expandCollapse", "update:modelValue"]);
 </script>
+<style></style>

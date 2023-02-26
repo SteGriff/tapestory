@@ -71,7 +71,9 @@ html {
 }
 
 .sqr32 {
+  height: 32px;
   min-height: 32px;
+  width: 32px;
   min-width: 32px;
 }
 
