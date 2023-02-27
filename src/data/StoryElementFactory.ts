@@ -10,7 +10,7 @@ export function initialBox(): IColourStoryElement {
     elementType: StoryElementType.Box,
     shape: "round",
     shader: "g13",
-    palette: 1,
+    //palette: 1,
     foreground: "white",
     text: randomPrompt(),
     alignment: "center",

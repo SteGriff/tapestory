@@ -18,16 +18,19 @@
           <box
             v-if="el.elementType === StoryElementType.Box"
             :story-element="el"
+            :palette="state.project.palette"
             @click="selectBox(el.id)"
           />
           <word-art
             v-if="el.elementType === StoryElementType.WordArt"
             :story-element="el"
+            :palette="state.project.palette"
             @click="selectBox(el.id)"
           />
           <connector
             v-if="el.elementType === StoryElementType.Connector"
             :story-element="el"
+            :palette="state.project.palette"
             @click="selectBox(el.id)"
           />
         </element-tools>
@@ -59,6 +62,15 @@
     <!-- Bottom toolbar -->
     <footer class="fixed bottom-0 w-100 br b--gray z-0 bg-mid-gray">
       <div class="w-100 measure center flex">
+        <tool-drawer class="bg-moon-gray" :expanded="toolIs(ToolType.Palette)">
+          <palette-picker
+            v-model="state.project.palette"
+            @expandCollapse="expandCollapse(ToolType.Palette)"
+            @expand="expand(ToolType.Palette)"
+            @update:modelValue="state.saveProjectLocal()"
+          />
+        </tool-drawer>
+
         <tool-drawer
           v-if="shapesFor(state.selectedElement.elementType).length > 1"
           class="bg-moon-gray"
@@ -75,26 +87,13 @@
         </tool-drawer>
 
         <tool-drawer
-          v-if="state.selectedElement.palette"
-          class="bg-moon-gray"
-          :expanded="toolIs(ToolType.Palette)"
-        >
-          <palette-picker
-            v-model="state.selectedElement.palette"
-            @expandCollapse="expandCollapse(ToolType.Palette)"
-            @expand="expand(ToolType.Palette)"
-            @update:modelValue="state.saveProjectLocal()"
-          />
-        </tool-drawer>
-
-        <tool-drawer
           v-if="state.selectedElement.shader"
           class="bg-light-gray"
           :expanded="toolIs(ToolType.Shader)"
         >
           <shader-picker
             v-model="state.selectedElement.shader"
-            :palette="state.selectedElement.palette"
+            :palette="state.project.palette"
             @expandCollapse="expandCollapse(ToolType.Shader)"
             @expand="expand(ToolType.Shader)"
             @update:modelValue="state.saveProjectLocal()"
@@ -108,7 +107,7 @@
         >
           <foreground-picker
             v-model="state.selectedElement.foreground"
-            :palette="state.selectedElement.palette"
+            :palette="state.project.palette"
             :shader="state.selectedElement.shader"
             @expandCollapse="expandCollapse(ToolType.Foreground)"
             @expand="expand(ToolType.Foreground)"
@@ -142,7 +141,7 @@
     class="overlay z-2 bg-dark-gray o-70 fixed absolute--fill"
   ></div>
 
-  <!-- Overlay close btn pa0 -->
+  <!-- Overlay close button -->
   <div v-if="state.overlay">
     <div
       class="z-3 white huge fixed right-2 top-1 pointer"
@@ -186,7 +185,6 @@ import { shapesFor } from "@/logic/shapes";
 const state = useEditorStore();
 
 const selectBox = (id: string) => {
-  console.log("selectBox", id);
   state.selectedElementId = id;
 };
 

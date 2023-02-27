@@ -5,4 +5,5 @@ export interface IProject {
     name: string;
     public: boolean;
     storyElements: IStoryElement[];
+    palette: number;
 }

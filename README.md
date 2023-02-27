@@ -53,7 +53,7 @@ Need a way to change background colour (pick from palette/black/white)
 - [x] StoryProject data like background colour, title, ID
 - [x] "Fresh Project" button
 - [ ] Background colour
-- [ ] Global palette? Experiment
+- [x] Global palette? Experiment
 - [ ] Bottom toolbar - split by project/element?
 
 ### UI
@@ -63,7 +63,9 @@ Need a way to change background colour (pick from palette/black/white)
 - [ ] Help button against initial prompt
 - [ ] Slide elements side-to-side
 - [x] Add connectors and flourishes
-- [ ] Connector tools - width, type, colour, remove N/A tooling
+- [x] Connector tools - remove N/A tooling
+- [x] Connector tools - type
+- [ ] Connector tools - width, colour
 - [ ] Reorder elements with drag'n'drop
 
 What to call the story elements, for users? Cards? Blocks? Elements?

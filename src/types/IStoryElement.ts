@@ -3,7 +3,7 @@ import { StoryElementType } from "./StoryElementType";
 export interface IColourStoryElement extends IStoryElement {
   text: string;
   shader: string;
-  palette: number;
+  //palette: number;
   foreground: string;
 }
 

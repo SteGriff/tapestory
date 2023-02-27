@@ -2,18 +2,6 @@ html {
   background: white;
 }
 
-.l-50 {
-  left: 50%;
-}
-
-.t-50 {
-  top: 50%;
-}
-
-.translate-center {
-  transform: translate(-50%, -50%);
-}
-
 .huge {
   font-size: 5rem;
 }
@@ -33,21 +21,36 @@ html {
 .first {
   color: var(--first);
 }
+.csvg .first {
+  stroke: var(--first);
+}
 
 .second {
   color: var(--second);
+}
+.csvg .second {
+  stroke: var(--second);
 }
 
 .third {
   color: var(--third);
 }
+.csvg .third {
+  stroke: var(--third);
+}
 
 .fourth {
   color: var(--fourth);
 }
+.csvg .fourth {
+  stroke: var(--fourth);
+}
 
 .fifth {
   color: var(--fifth);
+}
+.csvg .fifth {
+  stroke: var(--fifth);
 }
 
 .bg-first {

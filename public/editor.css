@@ -40,6 +40,20 @@
   flex: 0 0 auto;
 }
 
+/* Overlay/Dialog */
+
+.l-50 {
+  left: 50%;
+}
+
+.t-50 {
+  top: 50%;
+}
+
+.translate-center {
+  transform: translate(-50%, -50%);
+}
+
 /* UI Interactivity */
 
 .box,

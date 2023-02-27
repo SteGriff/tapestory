@@ -10,5 +10,6 @@ import svgImg from "@/components/SvgImg.vue";
 
 const props = defineProps<{
   storyElement: IColourStoryElement;
+  palette: number;
 }>();
 </script>

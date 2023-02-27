@@ -15,7 +15,8 @@ const initialProject = (): IProject => {
     id: cuid(),
     name: "Story",
     public: false,
-    storyElements: elements
+    storyElements: elements,
+    palette: 1
   };
 }
 
@@ -68,7 +69,7 @@ export const useEditorStore = defineStore("editor", {
     bottomElementClasses(): string[] {
       const bottomColouredEl = this.bottomElement as IColourStoryElement;
       return [
-        "palette" + bottomColouredEl.palette,
+        "palette" + this.project.palette,
         "shader" + bottomColouredEl.shader,
         bottomColouredEl.foreground,
       ]
@@ -76,10 +77,11 @@ export const useEditorStore = defineStore("editor", {
   },
   actions: {
     addBox() {
-      const newEl: IStoryElement = elementLike(
+      const newEl: IColourStoryElement = elementLike(
         this.bottomElement,
         this.bottomElement.order + 1,
-      );
+      ) as IColourStoryElement;
+      newEl.text = "...";
       this.project.storyElements.push(newEl);
       this.saveProjectLocal();
     },

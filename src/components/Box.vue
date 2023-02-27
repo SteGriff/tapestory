@@ -4,7 +4,7 @@
     :class="[
       'shape' + storyElement.shape,
       'shader' + storyElement.shader,
-      'palette' + storyElement.palette,
+      'palette' + palette,
       storyElement.foreground,
     ]"
   >
@@ -17,6 +17,7 @@ import { type IColourStoryElement } from "@/types/IStoryElement";
 
 defineProps<{
   storyElement: IColourStoryElement;
+  palette: number;
 }>();
 </script>
 
