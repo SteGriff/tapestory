@@ -5,36 +5,46 @@
       @click="state.expandedTool = ToolType.None"
     >
       <!-- The user generated story elements -->
-      <div v-for="el in state.orderedElements" :key="el.id">
-        <element-tools
-          :selected="selectedIs(el.id)"
-          :hasText="hasText(el.elementType)"
-          :hasSparkles="hasText(el.elementType)"
-          @changeType="changeType(el)"
-          @delete="deleteElement(el)"
-          @editText="editText(el)"
-          @connectAfter="connectAfter(el)"
+      <transition-group name="orderable" tag="div">
+        <div
+          v-for="el in state.orderedElements"
+          :key="el.id"
+          class="handle"
+          :class="el.state"
+          @mousedown="grab(el)"
+          @mouseup="release(el)"
+          @mousemove="move(el, $event)"
         >
-          <box
-            v-if="el.elementType === StoryElementType.Box"
-            :story-element="el"
-            :palette="state.project.palette"
-            @click="selectBox(el.id)"
-          />
-          <word-art
-            v-if="el.elementType === StoryElementType.WordArt"
-            :story-element="el"
-            :palette="state.project.palette"
-            @click="selectBox(el.id)"
-          />
-          <connector
-            v-if="el.elementType === StoryElementType.Connector"
-            :story-element="el"
-            :palette="state.project.palette"
-            @click="selectBox(el.id)"
-          />
-        </element-tools>
-      </div>
+          <element-tools
+            :selected="selectedIs(el.id)"
+            :hasText="hasText(el.elementType)"
+            :hasSparkles="hasText(el.elementType)"
+            @changeType="changeType(el)"
+            @delete="deleteElement(el)"
+            @editText="editText(el)"
+            @connectAfter="connectAfter(el)"
+          >
+            <box
+              v-if="el.elementType === StoryElementType.Box"
+              :story-element="el"
+              :palette="state.project.palette"
+              @click="selectBox(el.id)"
+            />
+            <word-art
+              v-if="el.elementType === StoryElementType.WordArt"
+              :story-element="el"
+              :palette="state.project.palette"
+              @click="selectBox(el.id)"
+            />
+            <connector
+              v-if="el.elementType === StoryElementType.Connector"
+              :story-element="el"
+              :palette="state.project.palette"
+              @click="selectBox(el.id)"
+            />
+          </element-tools>
+        </div>
+      </transition-group>
 
       <button
         class="btn pa0 bn black pointer br-pill f2 w3 h3 db center tc"
@@ -186,6 +196,20 @@ const state = useEditorStore();
 
 const selectBox = (id: string) => {
   state.selectedElementId = id;
+};
+
+const grab = (el) => {
+  el.state = "grabbing";
+  // startMove(el, e)
+};
+const release = (el) => {
+  el.state = "";
+  // endMove(el, e)
+};
+const move = (el) => {
+  if (el.state !== "grabbing") return;
+  //console.log("move", el.order, event);
+  //doMove(el, e);
 };
 
 const changeType = (el) => {

@@ -14,7 +14,8 @@ export function initialBox(): IColourStoryElement {
     foreground: "white",
     text: randomPrompt(),
     alignment: "center",
-    deleted: false
+    deleted: false,
+    state: "",
   };
 }
 
@@ -29,6 +30,7 @@ export function newConnector(order: number): IStoryElement {
     elementType: StoryElementType.Connector,
     shape: "1",
     alignment: "center",
-    deleted: false
+    deleted: false,
+    state: "",
   };
 }

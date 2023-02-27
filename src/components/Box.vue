@@ -1,6 +1,6 @@
 <template>
   <div
-    class="box z-1 tc b pointer"
+    class="box z-1 tc b"
     :class="[
       'shape' + storyElement.shape,
       'shader' + storyElement.shader,

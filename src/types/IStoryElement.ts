@@ -14,4 +14,5 @@ export interface IStoryElement {
   shape: string;
   alignment: string;
   deleted: boolean;
+  state: string;
 }

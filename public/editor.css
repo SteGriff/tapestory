@@ -62,6 +62,14 @@
   transition: transform 0.25s ease-out;
 }
 
+.handle {
+  cursor: grab;
+  user-select: none;
+}
+.handle.grabbing {
+  cursor: grabbing;
+}
+
 .box:hover,
 .wordArt:hover,
 .btn:hover {
@@ -74,4 +82,23 @@
 .wordArt:focus {
   transform: scale(1.03);
   outline: 2px solid var(--first);
+}
+
+/* Orderable */
+
+.orderable-move, /* apply transition to moving elements */
+.orderable-enter-active,
+.orderable-leave-active {
+  transition: all 0.5s ease;
+}
+
+.orderable-enter-from,
+.orderable-leave-to {
+  opacity: 0;
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.orderable-leave-active {
+  position: absolute;
 }
