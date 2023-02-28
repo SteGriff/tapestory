@@ -11,8 +11,9 @@
           :key="el.id"
           class="handle"
           :class="el.state"
-          @mousedown="grab(el)"
-          @mouseup="release(el)"
+          :style="transformation(el)"
+          @mousedown="grab(el, $event)"
+          @mouseup="release(el, $event)"
           @mousemove="move(el, $event)"
         >
           <element-tools
@@ -58,13 +59,9 @@
       <table v-show="state.debug" class="mt3 w5 center tc" cell-spacing="0">
         <tr>
           <td class="ba pa1">{{ state.selectedElementId }}</td>
-          <td class="ba pa1">typ {{ state.selectedElement.elementType }}</td>
-          <td class="ba pa1">pal {{ state.selectedElement.palette }}</td>
-          <td class="ba pa1">shd {{ state.selectedElement.shader }}</td>
-          <td class="ba pa1">fgc {{ state.selectedElement.foreground }}</td>
-          <td class="ba pa1">{{ state.selectedElement.text }}</td>
-          <td class="ba pa1">ord {{ state.selectedElement.order }}</td>
-          <td class="ba pa1">del {{ state.selectedElement.deleted }}</td>
+          <td class="ba pa1">init {{ state.selectedElement.initX }}</td>
+          <td class="ba pa1">curr {{ state.selectedElement.currX }}</td>
+          <td class="ba pa1">offs {{ state.selectedElement.offsX }}</td>
         </tr>
       </table>
     </main>
@@ -191,6 +188,7 @@ import { ToolType } from "@/types/ToolType";
 import { StoryElementType } from "@/types/StoryElementType";
 import { useEditorStore } from "@/data/EditorStore";
 import { shapesFor } from "@/logic/shapes";
+import { startMove, endMove, doMove } from "@/logic/movement";
 
 const state = useEditorStore();
 
@@ -198,18 +196,20 @@ const selectBox = (id: string) => {
   state.selectedElementId = id;
 };
 
-const grab = (el) => {
+const grab = (el, e) => {
   el.state = "grabbing";
-  // startMove(el, e)
+  startMove(el, e);
 };
-const release = (el) => {
+const release = (el, e) => {
   el.state = "";
-  // endMove(el, e)
+  endMove(el, e);
 };
-const move = (el) => {
+const move = (el, e) => {
   if (el.state !== "grabbing") return;
-  //console.log("move", el.order, event);
-  //doMove(el, e);
+  doMove(el, e);
+};
+const transformation = (el) => {
+  return { transform: `translate3d(${el.currX}px, ${el.currY}px, 0)` };
 };
 
 const changeType = (el) => {

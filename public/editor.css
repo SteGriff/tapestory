@@ -86,7 +86,8 @@
 
 /* Orderable */
 
-.orderable-move, /* apply transition to moving elements */
+/* This transition screws up the draggability
+.orderable-move,
 .orderable-enter-active,
 .orderable-leave-active {
   transition: all 0.5s ease;
@@ -97,8 +98,7 @@
   opacity: 0;
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
 .orderable-leave-active {
   position: absolute;
 }
+*/

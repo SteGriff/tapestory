@@ -58,19 +58,36 @@ Need a way to change background colour (pick from palette/black/white)
 
 ### UI
 
-- [x] - button should follow latest
+- [x] Plus button should follow latest
 - [x] Writing prompts
 - [ ] Help button against initial prompt
 - [ ] Slide elements side-to-side
+- [ ] Reorder elements with drag'n'drop
 - [x] Add connectors and flourishes
 - [x] Connector tools - remove N/A tooling
 - [x] Connector tools - type
 - [ ] Connector tools - width, colour
-- [ ] Reorder elements with drag'n'drop
 
 What to call the story elements, for users? Cards? Blocks? Elements?
 
 ## Problem Notes
+
+### 2023-02-28
+
+Movable elements
+
+Elements can move anywhere around the page but there are problems:
+
+- If the mouse leaves the element, the drag stops
+- The tools come with the blob/word/connector
+- The transition-group animation doesn't play nice with the movement logic
+
+I'm thinking:
+
+- There should be a handle element that wraps the box/wordart/connector
+- This should have the movable logic attached
+- The transition group can still target the top level divs as it does now
+- Hopefully if the movement logic can correctly set the order prop and then stop drag, the transition-group should take over.
 
 ### 2023-02-10
 
