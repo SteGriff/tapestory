@@ -2,10 +2,6 @@ html {
   background: white;
 }
 
-.huge {
-  font-size: 5rem;
-}
-
 .selected {
   outline: 2px solid var(--first);
 }

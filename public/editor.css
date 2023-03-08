@@ -46,12 +46,16 @@
   left: 50%;
 }
 
-.t-50 {
-  top: 50%;
+.t-40 {
+  top: 40%;
 }
 
 .translate-center {
   transform: translate(-50%, -50%);
+}
+
+.huge {
+  font-size: 4rem;
 }
 
 /* UI Interactivity */

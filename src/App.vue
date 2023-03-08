@@ -161,13 +161,13 @@
   <!-- Overlay contents -->
   <div v-if="state.overlay === 'edit'">
     <textarea
-      class="z-3 white bn bg-transparent huge b tc fixed t-50 l-50 translate-center w-90 ma2 pa1 ph3"
+      class="z-3 white bn bg-transparent huge b tc fixed t-40 l-50 translate-center w-90 ma2 pa1 ph3"
       v-model="state.selectedElement.text"
     ></textarea>
   </div>
   <div v-if="state.overlay === 'title'">
     <textarea
-      class="z-3 white bn bg-transparent huge b tc fixed t-50 l-50 translate-center w-90 ma2 pa1 ph3"
+      class="z-3 white bn bg-transparent huge b tc fixed t-40 l-50 translate-center w-90 ma2 pa1 ph3"
       v-model="state.project.name"
     ></textarea>
   </div>
